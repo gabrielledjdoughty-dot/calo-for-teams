@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calo for Teams — Join Your Team's Meal Programme</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #3dad69;
+      --green-dark: #104b34;
+      --green-mid: #1c7e57;
+      --green-hover: #2ea458;
+      --purple: #985798;
+      --gray: #697886;
+      --light-gray: #f7f7f7;
+      --border: #e2e8f0;
+      --white: #ffffff;
+      --error: #e2574c;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f0f5f2;
+      color: #2d3748;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--green-dark);
+      padding: 18px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      background: var(--green);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
+      color: white;
+    }
+    .logo-text { color: white; font-size: 22px; font-weight: 900; }
+    .logo-text span { color: var(--green); }
+    .header-badge {
+      background: rgba(61,173,105,0.2);
+      border: 1px solid var(--green);
+      border-radius: 100px;
+      padding: 6px 16px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--green-dark) 0%, #1a6644 50%, #0d3d28 100%);
+      padding: 60px 24px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="35" fill="rgba(61,173,105,0.07)"/><circle cx="90" cy="90" r="55" fill="rgba(61,173,105,0.05)"/></svg>');
+      background-size: cover;
+    }
+    .hero-inner { position: relative; max-width: 700px; margin: 0 auto; }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(61,173,105,0.25);
+      border: 1px solid rgba(61,173,105,0.5);
+      color: #7ee8a2;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 100px;
+      padding: 6px 18px;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 4.5vw, 48px);
+      font-weight: 900;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .hero h1 span { color: var(--green); }
+    .hero p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.7;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ── USP BOXES ── */
+    .usp-section {
+      background: var(--green-dark);
+      padding: 0 24px 48px;
+    }
+    .usp-boxes {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 900px) { .usp-boxes { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .usp-boxes { grid-template-columns: 1fr; } }
+
+    .usp-box {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 20px 16px;
+      text-align: center;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .usp-box:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--green);
+      transform: translateY(-3px);
+    }
+    .usp-box .emoji { font-size: 28px; margin-bottom: 10px; display: block; }
+    .usp-box h3 { font-size: 13px; font-weight: 900; color: white; margin-bottom: 6px; line-height: 1.3; }
+    .usp-box p { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.4; }
+
+    /* Awards strip */
+    .awards-strip {
+      background: var(--light-gray);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      text-align: center;
+    }
+    .awards-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .award {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green-dark);
+    }
+    .award .star { color: #fbbf24; font-size: 15px; }
+
+    /* ── MAIN ── */
+    .main-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .section-intro {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .section-intro-text h2 { font-size: 24px; font-weight: 900; color: var(--green-dark); margin-bottom: 6px; }
+    .section-intro-text p { font-size: 14px; color: var(--gray); line-height: 1.5; max-width: 520px; }
+
+    /* ── TABLE CARD ── */
+    .table-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    /* Table header */
+    .table-head {
+      display: grid;
+      grid-template-columns: 48px 1fr 1fr 1fr 1.4fr 1.2fr 52px;
+      gap: 0;
+      background: var(--green-dark);
+      padding: 0;
+    }
+    @media (max-width: 800px) {
+      .table-head { display: none; }
+    }
+    .th {
+      padding: 14px 12px;
+      font-size: 11.5px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .th:last-child { border-right: none; }
+    .th.center { text-align: center; }
+
+    /* Rows container */
+    #rows-container { padding: 16px 16px 0; }
+
+    /* Employee Row */
+    .employee-row {
+      display: grid;
+      grid-template-columns: 48px 1fr 1fr 1fr 1.4fr 1.2fr 52px;
+      gap: 10px;
+      align-items: start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      animation: slideIn 0.25s ease-out;
+    }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+    .employee-row:last-child { border-bottom: none; }
+
+    @media (max-width: 800px) {
+      .employee-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        background: white;
+        border: 1.5px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+        margin-bottom: 12px;
+        position: relative;
+      }
+    }
+
+    .row-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--light-gray);
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--gray);
+      margin-top: 9px;
+      flex-shrink: 0;
+    }
+    @media (max-width: 800px) {
+      .row-num { position: absolute; top: 16px; right: 56px; margin-top: 0; }
+    }
+
+    .cell { display: flex; flex-direction: column; gap: 4px; }
+    .cell label {
+      display: none;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--gray);
+    }
+    @media (max-width: 800px) { .cell label { display: block; } }
+
+    .cell input,
+    .cell select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 9px;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #2d3748;
+      background: white;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .cell input:focus, .cell select:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(61,173,105,0.12);
+    }
+    .cell input.has-error, .cell select.has-error {
+      border-color: var(--error);
+    }
+    .cell select { cursor: pointer; }
+
+    /* Allergies cell has two inputs stacked */
+    .allergy-inputs { display: flex; flex-direction: column; gap: 6px; }
+    .allergy-inputs input { font-size: 13px; padding: 8px 10px; }
+    .allergy-add-btn {
+      background: none;
+      border: 1.5px dashed var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: var(--green);
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      transition: border-color 0.2s, background 0.2s;
+      text-align: left;
+    }
+    .allergy-add-btn:hover { border-color: var(--green); background: rgba(61,173,105,0.04); }
+
+    /* Delete button */
+    .delete-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: #fff1f0;
+      border-radius: 9px;
+      color: var(--error);
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+    .delete-btn:hover { background: #ffe0de; }
+    .delete-btn:active { transform: scale(0.93); }
+    @media (max-width: 800px) {
+      .delete-btn { position: absolute; top: 16px; right: 16px; margin-top: 0; }
+    }
+
+    /* Add row row */
+    .add-row-wrapper {
+      padding: 16px;
+      border-top: 1.5px dashed var(--border);
+      margin-top: 4px;
+    }
+    .add-row-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(61,173,105,0.06);
+      border: 1.5px dashed var(--green);
+      border-radius: 12px;
+      padding: 13px 20px;
+      color: var(--green);
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+    .add-row-btn:hover { background: rgba(61,173,105,0.1); }
+    .add-row-btn .plus {
+      width: 28px;
+      height: 28px;
+      background: var(--green);
+      color: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    /* ── SUBMIT SECTION ── */
+    .submit-section {
+      margin-top: 32px;
+      text-align: center;
+    }
+    .countdown-notice {
+      background: rgba(61,173,105,0.08);
+      border: 1.5px solid rgba(61,173,105,0.3);
+      border-radius: 14px;
+      padding: 18px 24px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-align: left;
+    }
+    .countdown-icon { font-size: 28px; flex-shrink: 0; }
+    .countdown-notice p { font-size: 14px; color: var(--green-dark); line-height: 1.5; }
+    .countdown-notice strong { font-weight: 900; }
+
+    .btn-primary {
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 100px;
+      padding: 17px 56px;
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(61,173,105,0.4);
+    }
+    .btn-primary:hover { background: var(--green-hover); box-shadow: 0 6px 28px rgba(61,173,105,0.5); }
+    .btn-primary:active { transform: scale(0.97); }
+
+    .submit-sub {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--gray);
+    }
+    .submit-sub strong { color: var(--green-dark); }
+
+    /* ── CONFIRMATION STATE ── */
+    #roster-confirmation {
+      display: none;
+      text-align: center;
+      padding: 60px 24px 80px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .confirm-icon { font-size: 64px; display: block; margin-bottom: 20px; animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    @keyframes pop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    #roster-confirmation h2 { font-size: 32px; font-weight: 900; color: var(--green-dark); margin-bottom: 12px; }
+    #roster-confirmation p { font-size: 16px; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
+    .start-date-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green);
+      border-radius: 14px;
+      padding: 16px 28px;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green-dark);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    footer p { color: rgba(255,255,255,0.5); font-size: 13px; }
+    footer a { color: var(--green); }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="https://try.calo.app/calo-for-business/" class="logo" target="_blank">
+      <div class="logo-mark">C</div>
+      <span class="logo-text">calo <span>for teams</span></span>
+    </a>
+    <div class="header-badge">🌱 Voted #1 UK Healthy Meal Delivery</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Team Roster</div>
+    <h1>Sign up for your<br/><span>daily Calo meal</span></h1>
+    <p>Your employer has chosen Calo for Teams as a workplace perk. Add your details below to join the programme — tell us your dietary preferences and we'll take care of the rest.</p>
+  </div>
+</section>
+
+<!-- USP BOXES -->
+<div class="usp-section">
+  <div class="usp-boxes">
+    <div class="usp-box">
+      <span class="emoji">🏢</span>
+      <h3>Your Lunchtime Reason to Come In</h3>
+      <p>A fresh, healthy meal waiting for you at the office every day.</p>
+    </div>
+    <div class="usp-box">
+      <span class="emoji">🤝</span>
+      <h3>A Perk That Shows You're Valued</h3>
+      <p>Your employer is investing in your daily wellbeing — not just your salary.</p>
+    </div>
+    <div class="usp-box">
+      <span class="emoji">🥗</span>
+      <h3>Genuinely Good for Your Health</h3>
+      <p>Nutritionist-designed, calorie-balanced meals that actually taste great.</p>
+    </div>
+    <div class="usp-box">
+      <span class="emoji">⚡</span>
+      <h3>No Lunch Run. No Decision Fatigue.</h3>
+      <p>Zero queues, zero ordering — just more focused, energised afternoons.</p>
+    </div>
+    <div class="usp-box">
+      <span class="emoji">🔄</span>
+      <h3>Flexible Swaps with 1 Day's Notice</h3>
+      <p>Change your meal with just one working day's notice. You're always in control.</p>
+    </div>
+  </div>
+</div>
+
+<!-- AWARDS -->
+<div class="awards-strip">
+  <div class="awards-inner">
+    <div class="award"><span class="star">★</span> Voted Best Healthy Meal Delivery in London</div>
+    <div class="award"><span class="star">★</span> UK's #1 Workplace Meal Perk</div>
+    <div class="award">🏆 Best in Health &amp; Wellness 2024</div>
+    <div class="award">🌱 94% Employee Satisfaction Rate</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-wrapper">
+
+  <!-- Intro -->
+  <div class="section-intro reveal">
+    <div class="section-intro-text">
+      <h2>Team Meal Registration</h2>
+      <p>Add each team member below. You can share this page link with your colleagues and let everyone fill in their own row — or fill it in yourself. Hit <strong>Submit Roster</strong> when everyone's in.</p>
+    </div>
+    <div style="display:flex; align-items:center; gap:8px; background:rgba(61,173,105,0.08); border:1.5px solid rgba(61,173,105,0.25); border-radius:12px; padding:12px 18px; white-space:nowrap; flex-shrink:0;">
+      <span style="font-size:18px;">👥</span>
+      <div>
+        <div style="font-size:20px; font-weight:900; color:var(--green-dark);" id="row-count-display">1</div>
+        <div style="font-size:12px; color:var(--gray);">Team members</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Card -->
+  <div class="table-card reveal">
+    <!-- Desktop header -->
+    <div class="table-head">
+      <div class="th center">#</div>
+      <div class="th">Full Name</div>
+      <div class="th">Work Email</div>
+      <div class="th">Phone</div>
+      <div class="th">Dietary Preference</div>
+      <div class="th">Severe Allergies</div>
+      <div class="th center">Del</div>
+    </div>
+
+    <!-- Rows -->
+    <div id="rows-container">
+      <!-- First row injected by JS -->
+    </div>
+
+    <!-- Add Row -->
+    <div class="add-row-wrapper">
+      <button class="add-row-btn" id="add-row-btn" type="button">
+        <span class="plus">+</span>
+        Add another team member
+      </button>
+    </div>
+  </div>
+
+  <!-- Submit Section -->
+  <div class="submit-section reveal" id="submit-section">
+    <div class="countdown-notice">
+      <span class="countdown-icon">⏱️</span>
+      <p>The sooner you submit, the sooner your team eats.<br/>
+      <strong>Your Calo for Teams programme can start 1+ week from the date of submission.</strong> Don't keep your team waiting — every day you delay is a day without meals!</p>
+    </div>
+    <button class="btn-primary" id="submit-roster-btn" type="button">Submit Roster →</button>
+    <p class="submit-sub" id="submit-sub-text">Submitting for <strong id="submit-count">1</strong> team member(s)</p>
+  </div>
+
+  <!-- Confirmation (hidden until submit) -->
+  <div id="roster-confirmation">
+    <span class="confirm-icon">🎉</span>
+    <h2>Your team is registered!</h2>
+    <p>Welcome to Calo for Teams. Your roster has been submitted and our team will be in touch to confirm your programme details. Get ready for fresh, healthy lunches that your team will love.</p>
+    <p style="font-size:14px;">Voted <strong style="color:var(--green-dark)">Best Healthy Meal Delivery in the UK</strong> — and now your team gets to find out why.</p>
+    <div class="start-date-box">
+      <span>🚀</span>
+      <span>Your programme can start from <strong id="programme-start-date">—</strong></span>
+    </div>
+    <p style="margin-top:24px; font-size:13px; color:var(--gray);">Check your inbox — we'll be in touch within 1 working day.</p>
+  </div>
+
+</div><!-- /main-wrapper -->
+
+<footer>
+  <p>© 2025 <strong style="color:var(--green)">Calo for Teams</strong> · Voted Best Healthy Meal Delivery in the UK · <a href="https://try.calo.app/calo-for-business/">Learn more</a></p>
+</footer>
+
+
+<script>
+  const DIET_OPTIONS = [
+    { value: '', label: 'Select preference…' },
+    { value: 'no-preference', label: 'No preference / Omnivore' },
+    { value: 'vegetarian', label: '🥦 Vegetarian' },
+    { value: 'vegan', label: '🌱 Vegan' },
+    { value: 'high-protein', label: '💪 High Protein' },
+    { value: 'pescatarian', label: '🐟 Pescatarian' },
+    { value: 'halal', label: '☪️ Halal' },
+    { value: 'gluten-free', label: '🌾 Gluten Free' },
+  ];
+
+  let rowCount = 0;
+
+  function createRow(num) {
+    const row = document.createElement('div');
+    row.className = 'employee-row';
+    row.dataset.rowId = ++rowCount;
+
+    // Number
+    const numCell = document.createElement('div');
+    numCell.className = 'row-num';
+    numCell.textContent = num;
+    row.appendChild(numCell);
+
+    // Name
+    row.appendChild(makeInputCell('Full Name', 'text', 'e.g. Jane Smith', true));
+    // Email
+    row.appendChild(makeInputCell('Work Email', 'email', 'jane@company.com', true));
+    // Phone
+    row.appendChild(makeInputCell('Phone', 'tel', '+44 7700 000000', false));
+
+    // Diet
+    const dietCell = document.createElement('div');
+    dietCell.className = 'cell';
+    const dietLabel = document.createElement('label');
+    dietLabel.textContent = 'Dietary Preference';
+    const dietSelect = document.createElement('select');
+    DIET_OPTIONS.forEach(opt => {
+      const o = document.createElement('option');
+      o.value = opt.value;
+      o.textContent = opt.label;
+      if (!opt.value) o.disabled = true;
+      dietSelect.appendChild(o);
+    });
+    dietSelect.value = '';
+    dietCell.appendChild(dietLabel);
+    dietCell.appendChild(dietSelect);
+    row.appendChild(dietCell);
+
+    // Allergies
+    const allergyCell = document.createElement('div');
+    allergyCell.className = 'cell';
+    const allergyLabel = document.createElement('label');
+    allergyLabel.textContent = 'Severe Allergies';
+    const allergyInputs = document.createElement('div');
+    allergyInputs.className = 'allergy-inputs';
+    allergyInputs.appendChild(makeAllergyInput('e.g. Nuts, Shellfish'));
+    const addAllergyBtn = document.createElement('button');
+    addAllergyBtn.type = 'button';
+    addAllergyBtn.className = 'allergy-add-btn';
+    addAllergyBtn.textContent = '+ Add another allergy';
+    addAllergyBtn.addEventListener('click', () => {
+      allergyInputs.insertBefore(makeAllergyInput('Additional allergy'), addAllergyBtn);
+    });
+    allergyInputs.appendChild(addAllergyBtn);
+    allergyCell.appendChild(allergyLabel);
+    allergyCell.appendChild(allergyInputs);
+    row.appendChild(allergyCell);
+
+    // Delete
+    const deleteCell = document.createElement('div');
+    deleteCell.style.display = 'flex';
+    deleteCell.style.alignItems = 'flex-start';
+    deleteCell.style.paddingTop = '8px';
+    const deleteBtn = document.createElement('button');
+    deleteBtn.type = 'button';
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.innerHTML = '✕';
+    deleteBtn.title = 'Remove this row';
+    deleteBtn.addEventListener('click', () => {
+      row.style.opacity = '0';
+      row.style.transform = 'scale(0.95)';
+      row.style.transition = 'opacity 0.2s, transform 0.2s';
+      setTimeout(() => {
+        row.remove();
+        renumberRows();
+        updateCounts();
+      }, 200);
+    });
+    deleteCell.appendChild(deleteBtn);
+    row.appendChild(deleteCell);
+
+    return row;
+  }
+
+  function makeInputCell(labelText, type, placeholder, required) {
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+    const label = document.createElement('label');
+    label.textContent = labelText + (required ? ' *' : '');
+    const input = document.createElement('input');
+    input.type = type;
+    input.placeholder = placeholder;
+    cell.appendChild(label);
+    cell.appendChild(input);
+    return cell;
+  }
+
+  function makeAllergyInput(placeholder) {
+    const inp = document.createElement('input');
+    inp.type = 'text';
+    inp.placeholder = placeholder;
+    return inp;
+  }
+
+  function renumberRows() {
+    const rows = document.querySelectorAll('#rows-container .employee-row');
+    rows.forEach((row, i) => {
+      const num = row.querySelector('.row-num');
+      if (num) num.textContent = i + 1;
+    });
+  }
+
+  function updateCounts() {
+    const count = document.querySelectorAll('#rows-container .employee-row').length;
+    const display = document.getElementById('row-count-display');
+    const submitCount = document.getElementById('submit-count');
+    if (display) display.textContent = count;
+    if (submitCount) submitCount.textContent = count;
+  }
+
+  function addRow() {
+    const container = document.getElementById('rows-container');
+    const currentCount = container.querySelectorAll('.employee-row').length;
+    const row = createRow(currentCount + 1);
+    container.appendChild(row);
+    updateCounts();
+    // Focus first input of new row
+    setTimeout(() => {
+      const inputs = row.querySelectorAll('input');
+      if (inputs[0]) inputs[0].focus();
+    }, 50);
+  }
+
+  // Date helper
+  function addWeeks(date, weeks) {
+    const d = new Date(date);
+    d.setDate(d.getDate() + weeks * 7);
+    // Ensure it's a Monday if lands on weekend
+    while (d.getDay() === 0 || d.getDay() === 6) d.setDate(d.getDate() + 1);
+    return d;
+  }
+
+  function formatDate(date) {
+    return date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  // Init first row
+  addRow();
+
+  // Add row button
+  document.getElementById('add-row-btn').addEventListener('click', addRow);
+
+  // Submit
+  document.getElementById('submit-roster-btn').addEventListener('click', function() {
+    const rows = document.querySelectorAll('#rows-container .employee-row');
+    let valid = true;
+
+    rows.forEach(row => {
+      const inputs = row.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
+      const nameInput = inputs[0];
+      const emailInput = inputs[1];
+
+      // Clear previous errors
+      row.querySelectorAll('input, select').forEach(el => el.classList.remove('has-error'));
+
+      // Name required
+      if (!nameInput || !nameInput.value.trim()) {
+        if (nameInput) nameInput.classList.add('has-error');
+        valid = false;
+      }
+      // Email required + format
+      if (!emailInput || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+        if (emailInput) emailInput.classList.add('has-error');
+        valid = false;
+      }
+    });
+
+    if (!valid) {
+      const firstError = document.querySelector('.employee-row input.has-error');
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Success
+    const startDate = addWeeks(new Date(), 1);
+    document.getElementById('programme-start-date').textContent = formatDate(startDate);
+
+    document.querySelector('.table-card').style.display = 'none';
+    document.getElementById('submit-section').style.display = 'none';
+    document.querySelector('.section-intro').style.display = 'none';
+
+    const confirmation = document.getElementById('roster-confirmation');
+    confirmation.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
