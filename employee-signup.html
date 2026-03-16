@@ -353,6 +353,36 @@
     /* Reveal */
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── DAY PICKER ── */
+    .day-picker-row {
+      grid-column: 1 / -1;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      padding: 10px 0 6px;
+      border-top: 1px dashed var(--border);
+      margin-top: 6px;
+    }
+    .day-picker-label {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: var(--gray); flex-shrink: 0;
+    }
+    .day-btns { display: flex; gap: 8px; }
+    .day-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 2px solid #e0e5e0;
+      background: #f4f6f4; color: #aab3aa;
+      font-size: 14px; font-weight: 700;
+      cursor: pointer; transition: background 0.18s, border-color 0.18s, color 0.18s;
+      font-family: 'Lato', sans-serif;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .day-btn.active {
+      background: var(--green); border-color: var(--green); color: white;
+    }
+    .day-btn:hover:not(.active) {
+      border-color: var(--green); color: var(--green); background: rgba(56,182,117,0.07);
+    }
   </style>
 </head>
 <body>
@@ -603,6 +633,34 @@
     deleteWrap.appendChild(deleteBtn);
     row.appendChild(deleteWrap);
 
+    // Day picker — full-width row below fields
+    const dayPickerRow = document.createElement('div');
+    dayPickerRow.className = 'day-picker-row';
+    const dayLabel = document.createElement('span');
+    dayLabel.className = 'day-picker-label';
+    dayLabel.textContent = 'Delivery days:';
+    dayPickerRow.appendChild(dayLabel);
+    const dayBtns = document.createElement('div');
+    dayBtns.className = 'day-btns';
+    const days = [
+      { label: 'M', value: 'Mon' },
+      { label: 'T', value: 'Tue' },
+      { label: 'W', value: 'Wed' },
+      { label: 'T', value: 'Thu' },
+      { label: 'F', value: 'Fri' },
+    ];
+    days.forEach(d => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'day-btn active';
+      btn.dataset.day = d.value;
+      btn.textContent = d.label;
+      btn.addEventListener('click', () => btn.classList.toggle('active'));
+      dayBtns.appendChild(btn);
+    });
+    dayPickerRow.appendChild(dayBtns);
+    row.appendChild(dayPickerRow);
+
     return row;
   }
 
@@ -702,12 +760,14 @@
       const select   = row.querySelector('select');
       const allergies = Array.from(row.querySelectorAll('.allergy-inputs input'))
                             .map(i => i.value.trim()).filter(Boolean).join('; ');
+      const selectedDays = Array.from(row.querySelectorAll('.day-btn.active')).map(b => b.dataset.day).join(', ');
       employees.push({
         name:     inputs[0] ? inputs[0].value.trim() : '',
         email:    inputs[1] ? inputs[1].value.trim() : '',
         phone:    inputs[2] ? inputs[2].value.trim() : '',
         diet:     select    ? select.value            : '',
-        allergies: allergies
+        allergies: allergies,
+        days:     selectedDays
       });
     });
 

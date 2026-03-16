@@ -24,7 +24,7 @@ var EMPLOYEES_SHEET = 'Employee Rosters';
 
 // ── Column headers ───────────────────────────────────────────────
 var EMPLOYER_HEADERS  = ['Timestamp', 'Business Name', 'Address', 'Delivery Instructions', 'Email', 'Phone', 'Wants Samples', 'Delivery Date', 'Diet Preferences'];
-var EMPLOYEE_HEADERS  = ['Timestamp', 'Submission ID', 'Row #', 'Full Name', 'Work Email', 'Phone', 'Dietary Preference', 'Allergies'];
+var EMPLOYEE_HEADERS  = ['Timestamp', 'Submission ID', 'Row #', 'Full Name', 'Work Email', 'Phone', 'Dietary Preference', 'Allergies', 'Delivery Days'];
 
 function doPost(e) {
   try {
@@ -61,7 +61,8 @@ function doPost(e) {
           emp.email      || '',
           emp.phone      || '',
           emp.diet       || '',
-          emp.allergies  || ''
+          emp.allergies  || '',
+          emp.days       || ''
         ]);
       });
     }
