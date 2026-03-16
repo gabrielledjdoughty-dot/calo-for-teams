@@ -379,8 +379,8 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">🥗 Your Daily Lunch Perk</div>
-    <h1>Your employer is feeding you.<br/><em>Sign up in 30 seconds.</em></h1>
+    <div class="hero-eyebrow">🥗 Healthy Workplace Meals, Week After Week</div>
+    <h1>Your employer is<br/><em>feeding your week.</em></h1>
     <p>Your company has chosen Calo for Teams as your workplace perk. Add your details below — tell us your dietary preferences and we'll take care of the rest.</p>
   </div>
 </section>
@@ -454,7 +454,7 @@
   <div class="section-intro reveal">
     <div class="section-intro-text">
       <h2>Team Meal Registration</h2>
-      <p>Add each team member below. Share this page with colleagues and let everyone fill in their own row — or fill it in yourself. Hit <strong>Submit Roster</strong> when everyone's added.</p>
+      <p>Add each team member below. Share this page with colleagues and let everyone fill in their own row — or fill it in yourself. Hit <strong>Submit</strong> when everyone's added to start your standing weekly order.</p>
     </div>
     <div class="count-badge">
       <span class="count-badge-icon">👥</span>
@@ -488,13 +488,13 @@
   <!-- SUBMIT -->
   <div class="submit-section reveal" id="submit-section">
     <div class="countdown-notice">
-      <span class="countdown-icon">⏱️</span>
-      <p>The sooner you submit, the sooner your team eats.<br/>
-      <strong>Your Calo for Teams programme can start 1+ week from the date of submission.</strong>
-      <span class="countdown-accent"> Don't keep your team waiting — every day you delay is a day without meals!</span></p>
+      <span class="countdown-icon">🔄</span>
+      <p><strong>This sets up a recurring standing order</strong> — healthy workplace meals, week after week.<br/>
+      Your programme can start <strong>1+ week from the date of submission.</strong>
+      <span class="countdown-accent"> The sooner you submit, the sooner the meals begin!</span></p>
     </div>
-    <button class="btn-primary" id="submit-roster-btn" type="button">Submit Roster →</button>
-    <p class="submit-sub">Submitting for <strong id="submit-count">1</strong> team member(s)</p>
+    <button class="btn-primary" id="submit-roster-btn" type="button">Submit →</button>
+    <p class="submit-sub">Setting up weekly meals for <strong id="submit-count">1</strong> team member(s)</p>
   </div>
 
   <!-- CONFIRMATION -->
@@ -664,8 +664,12 @@
   addRow();
   document.getElementById('add-row-btn').addEventListener('click', addRow);
 
+  // ── Google Sheets endpoint ──────────────────────────────────────
+  // Paste your deployed Apps Script URL below (see google-apps-script.js for setup instructions)
+  const SHEETS_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
   // Submit
-  document.getElementById('submit-roster-btn').addEventListener('click', function() {
+  document.getElementById('submit-roster-btn').addEventListener('click', async function() {
     const rows = document.querySelectorAll('#rows-container .employee-row');
     let valid = true;
 
@@ -691,7 +695,40 @@
       return;
     }
 
-    // Success
+    // Collect all employee data
+    const employees = [];
+    rows.forEach(row => {
+      const inputs   = row.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
+      const select   = row.querySelector('select');
+      const allergies = Array.from(row.querySelectorAll('.allergy-inputs input'))
+                            .map(i => i.value.trim()).filter(Boolean).join('; ');
+      employees.push({
+        name:     inputs[0] ? inputs[0].value.trim() : '',
+        email:    inputs[1] ? inputs[1].value.trim() : '',
+        phone:    inputs[2] ? inputs[2].value.trim() : '',
+        diet:     select    ? select.value            : '',
+        allergies: allergies
+      });
+    });
+
+    // Show loading state
+    const btn = document.getElementById('submit-roster-btn');
+    btn.textContent = 'Submitting…';
+    btn.disabled = true;
+
+    // POST to Google Sheets (skip if URL not yet configured)
+    if (SHEETS_URL && SHEETS_URL !== 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+      try {
+        await fetch(SHEETS_URL, {
+          method: 'POST',
+          body: JSON.stringify({ type: 'employees', employees }),
+        });
+      } catch (err) {
+        console.warn('Sheets submission failed:', err);
+      }
+    }
+
+    // Show confirmation
     document.getElementById('programme-start-date').textContent = formatDate(addWeeks(new Date(), 1));
     document.querySelector('.table-card').style.display     = 'none';
     document.getElementById('submit-section').style.display = 'none';
