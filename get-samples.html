@@ -4,159 +4,188 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calo for Teams — Get Your Free Samples</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green: #3dad69;
-      --green-dark: #104b34;
-      --green-mid: #1c7e57;
-      --green-hover: #2ea458;
-      --purple: #985798;
-      --gray: #697886;
-      --light-gray: #f7f7f7;
-      --border: #e2e8f0;
-      --white: #ffffff;
-      --error: #e2574c;
+      --green:       #38B675;
+      --green-dark:  #104B34;
+      --green-mid:   #1d7a50;
+      --green-hover: #2fa366;
+      --green-light: #edf7f2;
+      --green-glow:  rgba(56,182,117,0.18);
+      --gray:        #6b7a8d;
+      --light-gray:  #f5f7f5;
+      --border:      #dde8e2;
+      --white:       #ffffff;
+      --error:       #e2574c;
+      --text:        #1a2e22;
     }
 
+    /* ── BASE ── */
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Lato', sans-serif;
       background: var(--white);
-      color: #2d3748;
+      color: var(--text);
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
+
+    /* ── LOGO SVG COMPONENT ── */
+    .calo-logo-svg { display: block; }
 
     /* ── HEADER ── */
     header {
       background: var(--green-dark);
-      padding: 18px 0;
+      padding: 16px 0;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
     }
     .header-inner {
       max-width: 1140px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .logo {
+    .logo-wrap {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 14px;
       text-decoration: none;
     }
-    .logo-mark {
-      width: 38px;
-      height: 38px;
-      background: var(--green);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 20px;
-      color: white;
-      letter-spacing: -1px;
+    .logo-divider {
+      width: 1px;
+      height: 24px;
+      background: rgba(255,255,255,0.25);
     }
-    .logo-text {
-      color: white;
-      font-size: 22px;
-      font-weight: 900;
+    .logo-sub {
+      color: rgba(255,255,255,0.75);
+      font-size: 15px;
+      font-weight: 400;
       letter-spacing: 0.5px;
     }
-    .logo-text span { color: var(--green); }
-    .header-badge {
-      background: rgba(61,173,105,0.2);
-      border: 1px solid var(--green);
+    .header-award {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(56,182,117,0.15);
+      border: 1px solid rgba(56,182,117,0.4);
       border-radius: 100px;
-      padding: 6px 16px;
-      color: var(--green);
-      font-size: 13px;
+      padding: 7px 16px;
+      color: #7ee8a2;
+      font-size: 12.5px;
       font-weight: 700;
+      letter-spacing: 0.3px;
     }
+    .header-award .star { color: #fbbf24; }
 
     /* ── HERO ── */
     .hero {
-      background: linear-gradient(135deg, var(--green-dark) 0%, #1a6644 50%, #0d3d28 100%);
-      padding: 72px 24px 80px;
+      background: var(--green-dark);
+      padding: 80px 28px 88px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
-    .hero::before {
+    /* Organic blob shapes */
+    .hero::before, .hero::after {
       content: '';
       position: absolute;
-      inset: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="40" fill="rgba(61,173,105,0.08)"/><circle cx="80" cy="80" r="60" fill="rgba(61,173,105,0.05)"/></svg>');
-      background-size: cover;
+      border-radius: 50%;
+      pointer-events: none;
     }
-    .hero-inner { position: relative; max-width: 720px; margin: 0 auto; }
+    .hero::before {
+      width: 600px; height: 600px;
+      top: -200px; right: -120px;
+      background: radial-gradient(circle, rgba(56,182,117,0.12) 0%, transparent 70%);
+    }
+    .hero::after {
+      width: 400px; height: 400px;
+      bottom: -150px; left: -80px;
+      background: radial-gradient(circle, rgba(56,182,117,0.1) 0%, transparent 70%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
     .hero-eyebrow {
-      display: inline-block;
-      background: rgba(61,173,105,0.25);
-      border: 1px solid rgba(61,173,105,0.5);
-      color: #7ee8a2;
-      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(56,182,117,0.2);
+      border: 1px solid rgba(56,182,117,0.45);
+      color: #8ef0b8;
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
       border-radius: 100px;
-      padding: 6px 18px;
-      margin-bottom: 20px;
+      padding: 7px 20px;
+      margin-bottom: 24px;
+      animation: fadeUp 0.6s ease both;
     }
     .hero h1 {
-      font-size: clamp(32px, 5vw, 56px);
+      font-size: clamp(34px, 5.5vw, 60px);
       font-weight: 900;
       color: white;
-      line-height: 1.15;
-      margin-bottom: 18px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+      animation: fadeUp 0.6s 0.1s ease both;
     }
-    .hero h1 span { color: var(--green); }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--green);
+    }
     .hero p {
       font-size: 18px;
-      color: rgba(255,255,255,0.8);
-      line-height: 1.7;
-      max-width: 580px;
-      margin: 0 auto 32px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.75;
+      max-width: 560px;
+      margin: 0 auto 36px;
+      font-weight: 400;
+      animation: fadeUp 0.6s 0.2s ease both;
     }
-    .awards {
+    .hero-awards {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-top: 8px;
+      animation: fadeUp 0.6s 0.3s ease both;
     }
-    .award-badge {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 12px;
-      padding: 10px 18px;
-      color: rgba(255,255,255,0.9);
-      font-size: 13px;
-      font-weight: 700;
+    .hero-award {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 9px 18px;
+      color: rgba(255,255,255,0.88);
+      font-size: 13px;
+      font-weight: 700;
     }
-    .award-badge .star { color: #fbbf24; font-size: 16px; }
+    .hero-award .star { color: #fbbf24; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
+    }
 
     /* ── USP STRIP ── */
     .usp-strip {
-      background: var(--light-gray);
+      background: var(--green-light);
       border-bottom: 1px solid var(--border);
-      padding: 28px 24px;
+      padding: 22px 28px;
     }
     .usp-strip-inner {
       max-width: 1140px;
       margin: 0 auto;
       display: flex;
-      gap: 12px;
+      gap: 10px;
       justify-content: center;
       flex-wrap: wrap;
     }
@@ -164,63 +193,78 @@
       background: white;
       border: 1.5px solid var(--border);
       border-radius: 100px;
-      padding: 10px 20px;
-      font-size: 13.5px;
+      padding: 9px 18px;
+      font-size: 13px;
       font-weight: 700;
       color: var(--green-dark);
       display: flex;
       align-items: center;
-      gap: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      gap: 7px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      cursor: default;
     }
-    .usp-pill:hover { border-color: var(--green); box-shadow: 0 4px 12px rgba(61,173,105,0.15); }
-    .usp-pill .icon { font-size: 16px; }
+    .usp-pill:hover {
+      border-color: var(--green);
+      box-shadow: 0 3px 12px rgba(56,182,117,0.18);
+      transform: translateY(-1px);
+    }
 
     /* ── MAIN LAYOUT ── */
     .main {
       max-width: 1140px;
       margin: 0 auto;
-      padding: 56px 24px 80px;
+      padding: 56px 28px 96px;
       display: grid;
-      grid-template-columns: 1fr 380px;
+      grid-template-columns: 1fr 370px;
       gap: 48px;
       align-items: start;
     }
-    @media (max-width: 900px) {
+    @media (max-width: 920px) {
       .main { grid-template-columns: 1fr; }
       .sidebar { order: -1; }
     }
 
-    /* ── FORM ── */
+    /* ── FORM CARD ── */
     .form-card {
       background: white;
-      border-radius: 20px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-      padding: 40px;
+      border-radius: 24px;
+      box-shadow: 0 4px 32px rgba(16,75,52,0.08);
+      padding: 44px;
       border: 1px solid var(--border);
     }
-    .form-card h2 {
-      font-size: 26px;
+    @media (max-width: 600px) { .form-card { padding: 28px 20px; } }
+
+    .form-card-header { margin-bottom: 32px; }
+    .form-card-header h2 {
+      font-size: 28px;
       font-weight: 900;
       color: var(--green-dark);
       margin-bottom: 6px;
+      letter-spacing: -0.5px;
     }
-    .form-card .subtitle {
+    .form-card-header p {
       color: var(--gray);
       font-size: 15px;
-      margin-bottom: 32px;
-      line-height: 1.5;
+      line-height: 1.6;
     }
+
     .form-group { margin-bottom: 22px; }
     .form-group label {
       display: block;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 700;
       color: var(--green-dark);
-      margin-bottom: 7px;
+      margin-bottom: 8px;
+      letter-spacing: 0.2px;
     }
-    .form-group label .required { color: var(--error); margin-left: 2px; }
+    .label-opt {
+      font-weight: 400;
+      color: var(--gray);
+      font-size: 12px;
+    }
+    .required { color: var(--error); margin-left: 2px; }
+
     .form-group input[type="text"],
     .form-group input[type="email"],
     .form-group input[type="tel"],
@@ -229,10 +273,10 @@
       width: 100%;
       padding: 13px 16px;
       border: 1.5px solid var(--border);
-      border-radius: 10px;
+      border-radius: 12px;
       font-family: 'Lato', sans-serif;
       font-size: 15px;
-      color: #2d3748;
+      color: var(--text);
       background: white;
       transition: border-color 0.2s, box-shadow 0.2s;
       outline: none;
@@ -240,58 +284,59 @@
     .form-group input:focus,
     .form-group textarea:focus {
       border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(61,173,105,0.12);
+      box-shadow: 0 0 0 3px rgba(56,182,117,0.14);
     }
-    .form-group textarea { resize: vertical; min-height: 80px; }
-    .form-group .hint {
+    .form-group textarea { resize: vertical; min-height: 82px; }
+    .hint {
       font-size: 12px;
       color: var(--gray);
-      margin-top: 5px;
+      margin-top: 6px;
+      line-height: 1.4;
     }
-    .form-group .error-msg {
+    .error-msg {
       font-size: 12px;
       color: var(--error);
       margin-top: 5px;
       display: none;
     }
     .form-group.has-error input,
-    .form-group.has-error textarea {
-      border-color: var(--error);
-    }
+    .form-group.has-error textarea { border-color: var(--error); }
     .form-group.has-error .error-msg { display: block; }
 
     /* Upload */
     .upload-area {
       border: 2px dashed var(--border);
-      border-radius: 10px;
-      padding: 24px;
+      border-radius: 12px;
+      padding: 28px 20px;
       text-align: center;
       cursor: pointer;
       transition: border-color 0.2s, background 0.2s;
       position: relative;
     }
-    .upload-area:hover { border-color: var(--green); background: rgba(61,173,105,0.03); }
+    .upload-area:hover { border-color: var(--green); background: rgba(56,182,117,0.03); }
     .upload-area input[type="file"] {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      cursor: pointer;
-      width: 100%;
-      height: 100%;
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
     }
-    .upload-icon { font-size: 28px; margin-bottom: 8px; }
-    .upload-area p { font-size: 14px; color: var(--gray); }
+    .upload-icon { font-size: 26px; margin-bottom: 8px; }
+    .upload-area p { font-size: 14px; color: var(--gray); line-height: 1.5; }
     .upload-area strong { color: var(--green-dark); }
-    #logo-preview {
-      display: none;
-      margin-top: 12px;
-      text-align: center;
-    }
+    #logo-preview { display: none; margin-top: 14px; text-align: center; }
     #logo-preview img {
-      max-height: 80px;
-      max-width: 200px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
+      max-height: 72px; max-width: 180px;
+      border-radius: 8px; border: 1px solid var(--border);
+    }
+
+    /* Section divider */
+    .section-divider {
+      border: none; border-top: 1px solid var(--border); margin: 28px 0;
+    }
+    .section-heading {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 16px;
     }
 
     /* Toggle */
@@ -299,122 +344,72 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: var(--light-gray);
+      background: var(--green-light);
       border: 1.5px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 18px;
+      border-radius: 12px;
+      padding: 15px 18px;
+      gap: 12px;
     }
-    .toggle-label { font-size: 15px; font-weight: 600; color: var(--green-dark); }
-    .toggle-switch {
-      position: relative;
-      width: 52px;
-      height: 28px;
-      flex-shrink: 0;
-    }
+    .toggle-label { font-size: 15px; font-weight: 700; color: var(--green-dark); }
+    .toggle-switch { position: relative; width: 52px; height: 28px; flex-shrink: 0; }
     .toggle-switch input { opacity: 0; width: 0; height: 0; }
     .toggle-track {
-      position: absolute;
-      inset: 0;
-      background: #cbd5e0;
-      border-radius: 100px;
-      cursor: pointer;
-      transition: background 0.25s;
+      position: absolute; inset: 0;
+      background: #c8d5cc; border-radius: 100px; cursor: pointer; transition: background 0.25s;
     }
     .toggle-track::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: white;
-      border-radius: 50%;
-      top: 4px;
-      left: 4px;
-      transition: transform 0.25s;
+      content: ''; position: absolute;
+      width: 20px; height: 20px; background: white; border-radius: 50%;
+      top: 4px; left: 4px; transition: transform 0.25s;
       box-shadow: 0 1px 4px rgba(0,0,0,0.2);
     }
     .toggle-switch input:checked + .toggle-track { background: var(--green); }
     .toggle-switch input:checked + .toggle-track::after { transform: translateX(24px); }
 
-    /* Diet checkboxes */
-    .diet-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
+    /* Diet grid */
+    .diet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .diet-option {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display: flex; align-items: center; gap: 10px;
       padding: 11px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      font-size: 14px;
-      font-weight: 600;
-      color: #4a5568;
+      border: 1.5px solid var(--border); border-radius: 12px;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s;
+      font-size: 14px; font-weight: 600; color: #4a5568;
     }
-    .diet-option:hover { border-color: var(--green); background: rgba(61,173,105,0.04); }
+    .diet-option:hover { border-color: var(--green); background: rgba(56,182,117,0.04); }
     .diet-option input[type="checkbox"] { display: none; }
     .diet-check {
-      width: 18px;
-      height: 18px;
-      border: 2px solid var(--border);
-      border-radius: 5px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 18px; height: 18px;
+      border: 2px solid var(--border); border-radius: 5px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
       transition: all 0.2s;
     }
-    .diet-option input:checked ~ .diet-check {
-      background: var(--green);
-      border-color: var(--green);
-    }
+    .diet-option input:checked ~ .diet-check { background: var(--green); border-color: var(--green); }
     .diet-option input:checked ~ .diet-check::after { content: '✓'; color: white; font-size: 11px; font-weight: 900; }
-    .diet-option input:checked ~ span { color: var(--green-dark); }
-    .diet-icon { font-size: 16px; }
+    .diet-option input:checked ~ span:last-child { color: var(--green-dark); }
 
-    /* Submit button */
+    /* Submit */
     .btn-primary {
       width: 100%;
       background: var(--green);
       color: white;
       border: none;
       border-radius: 100px;
-      padding: 17px 32px;
+      padding: 18px 32px;
       font-family: 'Lato', sans-serif;
       font-size: 17px;
       font-weight: 900;
       cursor: pointer;
       transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-      box-shadow: 0 4px 16px rgba(61,173,105,0.35);
+      box-shadow: 0 6px 20px rgba(56,182,117,0.38);
       margin-top: 8px;
+      letter-spacing: 0.2px;
     }
-    .btn-primary:hover { background: var(--green-hover); box-shadow: 0 6px 20px rgba(61,173,105,0.45); }
+    .btn-primary:hover { background: var(--green-hover); box-shadow: 0 8px 28px rgba(56,182,117,0.48); }
     .btn-primary:active { transform: scale(0.98); }
 
     .form-footer {
-      text-align: center;
-      margin-top: 14px;
-      font-size: 12.5px;
-      color: var(--gray);
-      line-height: 1.5;
-    }
-
-    /* Section divider */
-    .section-divider {
-      border: none;
-      border-top: 1.5px solid var(--border);
-      margin: 24px 0;
-    }
-    .section-heading {
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-bottom: 14px;
+      text-align: center; margin-top: 14px;
+      font-size: 12px; color: var(--gray); line-height: 1.5;
     }
 
     /* ── SIDEBAR ── */
@@ -422,121 +417,121 @@
 
     .info-card {
       background: var(--green-dark);
-      border-radius: 20px;
-      padding: 28px;
+      border-radius: 24px;
+      padding: 30px 28px;
       color: white;
     }
-    .info-card h3 {
-      font-size: 18px;
-      font-weight: 900;
-      margin-bottom: 18px;
-      color: white;
+    .info-card-label {
+      font-size: 10px; font-weight: 900; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(56,182,117,0.8); margin-bottom: 10px;
     }
-    .usp-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .info-card h3 { font-size: 19px; font-weight: 900; margin-bottom: 22px; }
+
+    .usp-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
     .usp-list li {
-      display: flex;
-      gap: 12px;
-      font-size: 14px;
-      line-height: 1.5;
-      color: rgba(255,255,255,0.88);
+      display: flex; gap: 13px;
+      font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.82);
     }
     .usp-num {
-      width: 26px;
-      height: 26px;
-      background: var(--green);
-      border-radius: 50%;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 900;
-      color: white;
-      margin-top: 1px;
+      width: 26px; height: 26px; min-width: 26px;
+      background: var(--green); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 900; color: white; margin-top: 1px;
     }
+    .usp-list strong { color: white; font-weight: 700; }
 
     .stat-card {
       background: white;
       border: 1.5px solid var(--border);
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 2px 12px rgba(16,75,52,0.06);
     }
-    .stat-card h3 { font-size: 14px; font-weight: 700; color: var(--gray); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.8px; }
-    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .stat-card-label {
+      font-size: 10px; font-weight: 900; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gray); margin-bottom: 18px;
+    }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .stat-item { text-align: center; }
-    .stat-num { font-size: 28px; font-weight: 900; color: var(--green-dark); line-height: 1; }
-    .stat-label { font-size: 12px; color: var(--gray); margin-top: 4px; }
+    .stat-num { font-size: 30px; font-weight: 900; color: var(--green-dark); line-height: 1; }
+    .stat-label { font-size: 12px; color: var(--gray); margin-top: 5px; line-height: 1.3; }
 
     .testimonial-card {
-      background: var(--light-gray);
-      border-radius: 20px;
-      padding: 24px;
+      background: var(--green-light);
+      border-radius: 24px;
+      padding: 26px;
       border: 1.5px solid var(--border);
     }
+    .quote-mark { font-size: 32px; color: var(--green); line-height: 1; margin-bottom: 8px; font-family: Georgia, serif; }
     .testimonial-card p {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #4a5568;
-      font-style: italic;
-      margin-bottom: 14px;
+      font-size: 14px; line-height: 1.65; color: #3d4f42;
+      font-style: italic; margin-bottom: 16px;
     }
-    .testimonial-author { display: flex; align-items: center; gap: 10px; }
+    .testimonial-author { display: flex; align-items: center; gap: 11px; }
     .author-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--green);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 900;
-      font-size: 14px;
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--green); display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 900; font-size: 13px;
     }
-    .author-info .name { font-size: 13px; font-weight: 700; color: var(--green-dark); }
-    .author-info .title { font-size: 12px; color: var(--gray); }
+    .author-name { font-size: 13px; font-weight: 700; color: var(--green-dark); }
+    .author-role { font-size: 12px; color: var(--gray); }
 
     /* ── CONFIRMATION PAGE ── */
-    #confirmation-page {
-      display: none;
-      min-height: 100vh;
-    }
-    .confirmation-hero {
-      background: linear-gradient(135deg, var(--green-dark) 0%, #1a6644 60%, #0d3d28 100%);
-      padding: 80px 24px;
-      text-align: center;
-    }
-    .confirmation-hero-inner { max-width: 680px; margin: 0 auto; }
-    .confetti-icon { font-size: 56px; margin-bottom: 20px; display: block; animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
-    @keyframes pop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .confirmation-hero h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; color: white; margin-bottom: 14px; line-height: 1.2; }
-    .confirmation-hero h1 span { color: var(--green); }
-    .confirmation-hero p { font-size: 18px; color: rgba(255,255,255,0.85); line-height: 1.7; }
-    .delivery-date-box {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(61,173,105,0.2);
-      border: 1.5px solid rgba(61,173,105,0.5);
-      border-radius: 12px;
-      padding: 14px 24px;
-      margin: 24px auto 0;
-      color: white;
-      font-size: 16px;
-      font-weight: 700;
-    }
-    .delivery-date-box .icon { font-size: 22px; }
+    #confirmation-page { display: none; min-height: 100vh; }
 
-    .confirmation-body { max-width: 1140px; margin: 0 auto; padding: 60px 24px 80px; }
-    .confirmation-body h2 { font-size: 26px; font-weight: 900; color: var(--green-dark); margin-bottom: 8px; text-align: center; }
-    .confirmation-body .sub { text-align: center; color: var(--gray); font-size: 15px; margin-bottom: 40px; }
+    .confirmation-hero {
+      background: var(--green-dark);
+      padding: 88px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .confirmation-hero::before {
+      content: ''; position: absolute;
+      width: 700px; height: 700px; border-radius: 50%;
+      top: -250px; right: -100px;
+      background: radial-gradient(circle, rgba(56,182,117,0.14) 0%, transparent 70%);
+    }
+    .confirmation-hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+    .confirm-icon-large { font-size: 60px; display: block; margin-bottom: 22px; animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    @keyframes pop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    .confirmation-hero h1 {
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 900; color: white;
+      margin-bottom: 16px; line-height: 1.2; letter-spacing: -0.5px;
+    }
+    .confirmation-hero h1 em { font-style: normal; color: var(--green); }
+    .confirmation-hero p {
+      font-size: 17px; color: rgba(255,255,255,0.78); line-height: 1.75;
+    }
+    .delivery-box {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: rgba(56,182,117,0.18);
+      border: 1.5px solid rgba(56,182,117,0.45);
+      border-radius: 14px;
+      padding: 16px 28px;
+      margin-top: 28px; color: white; font-size: 16px; font-weight: 700;
+    }
+    .delivery-box .icon { font-size: 22px; }
+
+    .confirmation-body {
+      max-width: 1100px; margin: 0 auto; padding: 72px 28px 96px;
+    }
+    .confirmation-body .section-title {
+      text-align: center;
+      font-size: 28px; font-weight: 900; color: var(--green-dark);
+      margin-bottom: 8px; letter-spacing: -0.5px;
+    }
+    .confirmation-body .section-sub {
+      text-align: center; color: var(--gray); font-size: 15px; margin-bottom: 44px;
+    }
 
     .usp-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-bottom: 48px;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 18px;
+      margin-bottom: 52px;
     }
     .usp-card {
       background: white;
@@ -544,50 +539,52 @@
       border-radius: 20px;
       padding: 28px 22px;
       text-align: center;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      box-shadow: 0 3px 16px rgba(16,75,52,0.06);
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .usp-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-    .usp-card .usp-emoji { font-size: 36px; margin-bottom: 14px; display: block; }
-    .usp-card h3 { font-size: 15px; font-weight: 900; color: var(--green-dark); margin-bottom: 8px; }
-    .usp-card p { font-size: 13px; color: var(--gray); line-height: 1.5; }
+    .usp-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(16,75,52,0.1); }
+    .usp-card-emoji { font-size: 34px; display: block; margin-bottom: 14px; }
+    .usp-card h3 { font-size: 14px; font-weight: 900; color: var(--green-dark); margin-bottom: 8px; }
+    .usp-card p { font-size: 13px; color: var(--gray); line-height: 1.55; }
 
     .next-step-box {
-      background: linear-gradient(135deg, var(--green), var(--green-mid));
-      border-radius: 20px;
-      padding: 40px;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%);
+      border-radius: 24px;
+      padding: 48px 44px;
       text-align: center;
       color: white;
+      box-shadow: 0 8px 32px rgba(56,182,117,0.3);
     }
-    .next-step-box h3 { font-size: 22px; font-weight: 900; margin-bottom: 10px; }
-    .next-step-box p { font-size: 15px; color: rgba(255,255,255,0.88); margin-bottom: 24px; line-height: 1.6; }
+    .next-step-box h3 { font-size: 24px; font-weight: 900; margin-bottom: 12px; letter-spacing: -0.3px; }
+    .next-step-box p { font-size: 15px; color: rgba(255,255,255,0.85); margin-bottom: 28px; line-height: 1.65; max-width: 540px; margin-left: auto; margin-right: auto; }
     .btn-white {
       display: inline-block;
-      background: white;
-      color: var(--green-dark);
+      background: white; color: var(--green-dark);
       border-radius: 100px;
-      padding: 15px 36px;
+      padding: 16px 40px;
       font-family: 'Lato', sans-serif;
-      font-size: 16px;
-      font-weight: 900;
+      font-size: 16px; font-weight: 900;
       text-decoration: none;
       transition: box-shadow 0.2s, transform 0.1s;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+      letter-spacing: 0.2px;
     }
-    .btn-white:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.3); }
+    .btn-white:hover { box-shadow: 0 6px 26px rgba(0,0,0,0.26); }
     .btn-white:active { transform: scale(0.97); }
+    .next-step-note { margin-top: 18px; font-size: 13px; color: rgba(255,255,255,0.65); }
 
     /* ── FOOTER ── */
     footer {
       background: var(--green-dark);
-      padding: 32px 24px;
+      padding: 36px 28px;
       text-align: center;
     }
-    footer p { color: rgba(255,255,255,0.5); font-size: 13px; }
-    footer strong { color: var(--green); }
+    footer p { color: rgba(255,255,255,0.45); font-size: 13px; line-height: 1.7; }
+    footer a { color: var(--green); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
 
-    /* Scroll reveal */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.5s, transform 0.5s; }
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .reveal.visible { opacity: 1; transform: none; }
   </style>
 </head>
@@ -596,11 +593,20 @@
 <!-- ═══ HEADER ═══ -->
 <header>
   <div class="header-inner">
-    <a href="https://try.calo.app/calo-for-business/" class="logo" target="_blank">
-      <div class="logo-mark">C</div>
-      <span class="logo-text">calo <span>for teams</span></span>
+    <a href="https://try.calo.app/calo-for-business/" class="logo-wrap" target="_blank">
+      <!-- Real Calo SVG Wordmark — white version -->
+      <svg class="calo-logo-svg" width="72" height="31" viewBox="0 0 746 320" fill="white" xmlns="http://www.w3.org/2000/svg" aria-label="Calo">
+        <path d="M89.2,299.5c-18.1,0-33.5-6.3-46.1-19s-18.9-28-18.9-46v-149c0-18,6.4-33.4,19.1-46c12.7-12.7,28.1-19,45.9-19c18.1,0,33.4,6.4,46,19.1c12.6,12.7,18.9,28,18.9,46v31h-42.5V84.8c0-6.6-2.3-12.2-6.9-16.8s-10.2-6.9-16.8-6.9c-6.5,0-12,2.3-16.6,6.9c-4.6,4.6-6.9,10.2-6.9,16.8v149.4c0,6.6,2.3,12.1,6.9,16.7c4.6,4.6,10.1,6.9,16.6,6.9c6.6,0,12.2-2.3,16.8-6.9s6.9-10.2,6.9-16.7v-37.5h42.5v37.9c0,18.1-6.4,33.5-19.1,46C122.3,293.2,107,299.5,89.2,299.5z"/>
+        <path d="M260.7,233.5l-10,62.5h-42.7l46.1-272.1h56.5l45.5,272.1h-43l-9.7-62.5H260.7z M282.2,86.3L267,193.6h30.4L282.2,86.3z"/>
+        <path d="M533.3,296.1H421.4V23.9h41v231.4h70.9L533.3,296.1L533.3,296.1z"/>
+        <path d="M656.7,20.6c18.1,0,33.5,6.4,46.2,19.1s19,28.1,19,46.1v148.4c0,18.1-6.4,33.5-19.1,46.2c-12.7,12.7-28.1,19-46.1,19s-33.3-6.4-45.9-19.1c-12.6-12.7-18.9-28.1-18.9-46.1V85.9c0-18.1,6.4-33.5,19.1-46.2C623.7,27,639,20.6,656.7,20.6z M679,85.1c0-6.6-2.3-12.1-6.8-16.6c-4.5-4.5-10.1-6.8-16.6-6.8c-6.5,0-12,2.3-16.6,6.8S632,78.5,632,85.1V234c0,6.5,2.3,12,6.9,16.5s10.2,6.9,16.6,6.9c6.6,0,12.1-2.3,16.6-6.9c4.5-4.6,6.8-10.1,6.8-16.5V85.1z"/>
+      </svg>
+      <div class="logo-divider"></div>
+      <span class="logo-sub">for teams</span>
     </a>
-    <div class="header-badge">🌱 Voted #1 UK Healthy Meal Delivery</div>
+    <div class="header-award">
+      <span class="star">★</span> Voted #1 UK Healthy Meal Delivery
+    </div>
   </div>
 </header>
 
@@ -612,13 +618,13 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-eyebrow">Free Team Samples</div>
-      <h1>Feed your team.<br/><span>Fuel your business.</span></h1>
-      <p>Request a complimentary sample box of 10 Calo meals for your team. Taste the difference healthy eating makes to productivity, morale, and wellbeing.</p>
-      <div class="awards">
-        <div class="award-badge"><span class="star">★</span> Voted Best in London</div>
-        <div class="award-badge"><span class="star">★</span> UK's #1 Healthy Meal Delivery</div>
-        <div class="award-badge">🏆 Best Workplace Perk 2024</div>
+      <div class="hero-eyebrow">🎁 Free Sample Box — 10 Meals</div>
+      <h1>Feed your team.<br/><em>Fuel your business.</em></h1>
+      <p>Request a complimentary sample box of 10 Calo meals for your office. Taste the difference that nutritionist-designed lunches make to productivity, morale, and wellbeing.</p>
+      <div class="hero-awards">
+        <div class="hero-award"><span class="star">★</span> Voted Best in London</div>
+        <div class="hero-award"><span class="star">★</span> UK's #1 Healthy Meal Delivery</div>
+        <div class="hero-award">🏆 Best Workplace Perk 2024</div>
       </div>
     </div>
   </section>
@@ -626,20 +632,23 @@
   <!-- USP STRIP -->
   <div class="usp-strip">
     <div class="usp-strip-inner">
-      <div class="usp-pill"><span class="icon">🏢</span> Brings teams into the office</div>
-      <div class="usp-pill"><span class="icon">💪</span> Improves employee retention</div>
-      <div class="usp-pill"><span class="icon">🥗</span> Boosts health & wellbeing</div>
-      <div class="usp-pill"><span class="icon">⚡</span> Eliminates lunch-hour drag</div>
-      <div class="usp-pill"><span class="icon">📋</span> Zero admin for employers</div>
+      <div class="usp-pill">🏢 Brings teams into the office</div>
+      <div class="usp-pill">💪 Improves employee retention</div>
+      <div class="usp-pill">🥗 Boosts health &amp; wellbeing</div>
+      <div class="usp-pill">⚡ Eliminates lunch-hour drag</div>
+      <div class="usp-pill">📋 Zero admin for employers</div>
     </div>
   </div>
 
   <!-- MAIN CONTENT -->
   <div class="main">
+
     <!-- FORM CARD -->
     <div class="form-card reveal" id="main-form-card">
-      <h2>Request your free sample box</h2>
-      <p class="subtitle">Fill in your details and we'll send a curated box of 10 Calo meals straight to your office. No commitment required.</p>
+      <div class="form-card-header">
+        <h2>Request your free sample box</h2>
+        <p>Fill in your details and we'll send a curated box of 10 Calo meals straight to your office. No commitment, no strings.</p>
+      </div>
 
       <form id="sample-form" novalidate>
 
@@ -652,12 +661,12 @@
 
         <!-- Logo Upload -->
         <div class="form-group">
-          <label>Business Logo <span style="font-weight:400; color:var(--gray)">(optional)</span></label>
+          <label>Business Logo <span class="label-opt">(optional)</span></label>
           <div class="upload-area" id="upload-area">
             <input type="file" id="logo-input" accept="image/*" />
             <div class="upload-icon">📷</div>
             <p><strong>Click to upload</strong> or drag and drop</p>
-            <p style="font-size:12px; margin-top:4px;">PNG, JPG, SVG up to 5MB</p>
+            <p style="font-size:12px; margin-top:4px; color:#9aaba1;">PNG, JPG, SVG — up to 5MB</p>
           </div>
           <div id="logo-preview"><img id="logo-img" src="" alt="Logo preview" /></div>
         </div>
@@ -671,7 +680,7 @@
 
         <!-- Delivery Instructions -->
         <div class="form-group">
-          <label>Delivery Instructions <span style="font-weight:400; color:var(--gray)">(optional)</span></label>
+          <label>Delivery Instructions <span class="label-opt">(optional)</span></label>
           <textarea id="delivery-instructions" placeholder="e.g. Leave with reception, ring buzzer 3, security code 1234…" rows="2"></textarea>
         </div>
 
@@ -699,7 +708,7 @@
         <div class="form-group">
           <label>Would you like a sample box?</label>
           <div class="toggle-row">
-            <span class="toggle-label" id="toggle-label-text">Yes, send me a sample box of 10 meals 🎉</span>
+            <span class="toggle-label" id="toggle-label-text">Yes — send me a box of 10 meals 🎉</span>
             <label class="toggle-switch">
               <input type="checkbox" id="samples-toggle" checked />
               <span class="toggle-track"></span>
@@ -717,63 +726,60 @@
 
         <hr class="section-divider" />
         <div class="section-heading">Dietary Preferences</div>
-        <p style="font-size:13px; color:var(--gray); margin-bottom:14px;">We'll do our best to cater — tick all that apply for your team.</p>
+        <p style="font-size:13px; color:var(--gray); margin-bottom:16px; line-height:1.5;">We'll do our best to cater — tick all that apply for your team.</p>
 
         <div class="form-group">
           <div class="diet-grid">
             <label class="diet-option">
               <input type="checkbox" name="diet" value="vegetarian" />
               <span class="diet-check"></span>
-              <span class="diet-icon">🥦</span>
-              <span>Vegetarian</span>
+              <span>🥦</span><span>Vegetarian</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="vegan" />
               <span class="diet-check"></span>
-              <span class="diet-icon">🌱</span>
-              <span>Vegan</span>
+              <span>🌱</span><span>Vegan</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="high-protein" />
               <span class="diet-check"></span>
-              <span class="diet-icon">💪</span>
-              <span>High Protein</span>
+              <span>💪</span><span>High Protein</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="pescatarian" />
               <span class="diet-check"></span>
-              <span class="diet-icon">🐟</span>
-              <span>Pescatarian</span>
+              <span>🐟</span><span>Pescatarian</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="halal" />
               <span class="diet-check"></span>
-              <span class="diet-icon">☪️</span>
-              <span>Halal</span>
+              <span>☪️</span><span>Halal</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="gluten-free" />
               <span class="diet-check"></span>
-              <span class="diet-icon">🌾</span>
-              <span>Gluten Free</span>
+              <span>🌾</span><span>Gluten Free</span>
             </label>
           </div>
         </div>
 
         <button type="submit" class="btn-primary">Submit for Samples →</button>
         <p class="form-footer">🔒 Your information is kept private and secure. No spam, ever.</p>
+
       </form>
     </div>
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
-      <!-- USPs -->
+
+      <!-- Why Calo for Teams -->
       <div class="info-card reveal">
-        <h3>Why Calo for Teams?</h3>
+        <div class="info-card-label">Why Calo for Teams</div>
+        <h3>Five reasons employers across the UK are switching</h3>
         <ul class="usp-list">
           <li>
             <div class="usp-num">1</div>
-            <div><strong>Boosts office attendance</strong> — a meal perk employees actually come in for.</div>
+            <div><strong>Boosts office attendance</strong> — a lunch perk employees actually come in for.</div>
           </li>
           <li>
             <div class="usp-num">2</div>
@@ -796,7 +802,7 @@
 
       <!-- Stats -->
       <div class="stat-card reveal">
-        <h3>The Numbers</h3>
+        <div class="stat-card-label">The Numbers</div>
         <div class="stat-grid">
           <div class="stat-item">
             <div class="stat-num">94%</div>
@@ -804,7 +810,7 @@
           </div>
           <div class="stat-item">
             <div class="stat-num">10</div>
-            <div class="stat-label">Meals in sample box</div>
+            <div class="stat-label">Meals in your sample box</div>
           </div>
           <div class="stat-item">
             <div class="stat-num">1 day</div>
@@ -819,122 +825,117 @@
 
       <!-- Testimonial -->
       <div class="testimonial-card reveal">
-        <p>"Our team morale genuinely improved. People started coming in more, and the 3pm slump basically vanished. The admin is effortless."</p>
+        <div class="quote-mark">"</div>
+        <p>Our team morale genuinely improved. People started coming in more, and the 3pm slump basically vanished. The admin is effortless.</p>
         <div class="testimonial-author">
           <div class="author-avatar">SR</div>
-          <div class="author-info">
-            <div class="name">Sarah R.</div>
-            <div class="title">Head of People, London Tech Co.</div>
+          <div>
+            <div class="author-name">Sarah R.</div>
+            <div class="author-role">Head of People, London Tech Co.</div>
           </div>
         </div>
       </div>
+
     </aside>
   </div>
+
 </div><!-- /form-page -->
+
 
 <!-- ═══════════════════════════════════════════ -->
 <!-- CONFIRMATION PAGE                           -->
 <!-- ═══════════════════════════════════════════ -->
 <div id="confirmation-page">
 
-  <!-- Confetti Hero -->
   <section class="confirmation-hero">
     <div class="confirmation-hero-inner">
-      <span class="confetti-icon">🎉</span>
-      <h1>Congratulations — you've taken the<br/><span>first step towards a healthier team.</span></h1>
-      <p>Your sample box is on its way! We'll be in touch shortly to confirm the details. Get ready to taste why hundreds of London teams have made Calo their workplace perk of choice.</p>
-      <div class="delivery-date-box">
+      <span class="confirm-icon-large">🎉</span>
+      <h1>You've taken the first step towards<br/><em>a healthier, happier team.</em></h1>
+      <p>Your sample box is booked. We'll be in touch shortly to confirm. Get ready to taste why hundreds of London teams have made Calo their workplace perk of choice.</p>
+      <div class="delivery-box">
         <span class="icon">📦</span>
-        <span>Your samples are scheduled to arrive on <strong id="confirm-date-display">—</strong></span>
+        <span>Samples arriving on <strong id="confirm-date-display">—</strong></span>
       </div>
     </div>
   </section>
 
   <div class="confirmation-body">
-    <h2>Here's what you're unlocking for your team</h2>
-    <p class="sub">Five powerful reasons employers across the UK are switching to Calo for Teams.</p>
+    <div class="section-title">Here's what you're unlocking for your team</div>
+    <div class="section-sub">Five powerful reasons employers across the UK are switching to Calo for Teams.</div>
 
     <div class="usp-cards">
       <div class="usp-card">
-        <span class="usp-emoji">🏢</span>
+        <span class="usp-card-emoji">🏢</span>
         <h3>Gets Teams in the Office</h3>
         <p>A lunch perk worth showing up for — increase office attendance without mandates.</p>
       </div>
       <div class="usp-card">
-        <span class="usp-emoji">🤝</span>
+        <span class="usp-card-emoji">🤝</span>
         <h3>Retains Top Talent</h3>
         <p>Employees who feel cared for stay longer. Daily meals send a daily message.</p>
       </div>
       <div class="usp-card">
-        <span class="usp-emoji">🥗</span>
+        <span class="usp-card-emoji">🥗</span>
         <h3>Genuinely Healthier Teams</h3>
-        <p>Nutritionist-designed meals that support long-term health. Strong CSR story to tell.</p>
+        <p>Nutritionist-designed meals that support long-term health. A strong CSR story to tell.</p>
       </div>
       <div class="usp-card">
-        <span class="usp-emoji">⚡</span>
+        <span class="usp-card-emoji">⚡</span>
         <h3>Eliminates Lunch-Hour Drag</h3>
         <p>No queues, no decisions, no afternoon slumps. Just focused, energised afternoons.</p>
       </div>
       <div class="usp-card">
-        <span class="usp-emoji">📋</span>
+        <span class="usp-card-emoji">📋</span>
         <h3>Zero Employer Admin</h3>
-        <p>One subscription, employer pays — employees self-manage their meals with just 1 day's notice.</p>
+        <p>One subscription, employer pays — employees self-manage with just 1 day's notice.</p>
       </div>
     </div>
 
-    <!-- Next Step Box -->
     <div class="next-step-box">
       <h3>While you wait for your samples…</h3>
-      <p>Get ahead by setting up your team roster. Share the link below with your colleagues so they can register their names and dietary preferences — the sooner they're in, the sooner your Calo for Teams programme can begin.</p>
+      <p>Get ahead by setting up your team roster. Share the link below with your colleagues so they can register their names and dietary preferences — the sooner they're in, the sooner your Calo for Teams programme begins.</p>
       <a href="employee-signup.html" id="employee-link" class="btn-white">Set Up Your Team Roster →</a>
-      <p style="margin-top:16px; font-size:13px; opacity:0.75;">Your Calo for Teams programme can begin from the moment your roster is submitted. Don't keep your team waiting!</p>
+      <p class="next-step-note">Your Calo for Teams programme starts from the moment your roster is submitted.</p>
     </div>
   </div>
 
   <footer>
-    <p>© 2025 <strong>Calo for Teams</strong> · Voted Best Healthy Meal Delivery in the UK · <a href="https://try.calo.app/calo-for-business/" style="color:var(--green)">Learn more</a></p>
+    <p>
+      © 2025 <a href="https://try.calo.app/calo-for-business/">Calo for Teams</a> &nbsp;·&nbsp;
+      Voted Best Healthy Meal Delivery in the UK &nbsp;·&nbsp;
+      <a href="https://try.calo.app/calo-for-business/">Learn more</a>
+    </p>
   </footer>
 
 </div><!-- /confirmation-page -->
 
 
 <script>
-  // ── Date validation helpers ──
+  // ── Date helpers ──
   function addWorkingDays(date, days) {
-    let d = new Date(date);
-    let count = 0;
+    let d = new Date(date), count = 0;
     while (count < days) {
       d.setDate(d.getDate() + 1);
-      const dow = d.getDay();
-      if (dow !== 0 && dow !== 6) count++;
+      if (d.getDay() !== 0 && d.getDay() !== 6) count++;
     }
     return d;
   }
-
   function toYYYYMMDD(date) {
-    const y = date.getFullYear();
-    const m = String(date.getMonth() + 1).padStart(2, '0');
-    const d = String(date.getDate()).padStart(2, '0');
-    return `${y}-${m}-${d}`;
+    return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+  }
+  function isWeekday(str) {
+    const d = new Date(str + 'T00:00:00');
+    return d.getDay() !== 0 && d.getDay() !== 6;
+  }
+  function formatDateNice(str) {
+    return new Date(str + 'T00:00:00').toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
   }
 
-  function isWeekday(dateStr) {
-    const d = new Date(dateStr + 'T00:00:00');
-    const dow = d.getDay();
-    return dow !== 0 && dow !== 6;
-  }
-
-  function formatDateNice(dateStr) {
-    const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-  }
-
-  // Set min date on the date picker
+  // Set min date
   const dateInput = document.getElementById('delivery-date');
-  const minDate = addWorkingDays(new Date(), 3);
-  dateInput.min = toYYYYMMDD(minDate);
+  const minDate   = addWorkingDays(new Date(), 3);
+  dateInput.min   = toYYYYMMDD(minDate);
 
-  // Highlight weekends in date input (browser support varies — we validate on submit)
   dateInput.addEventListener('change', function() {
     const fg = document.getElementById('fg-date');
     if (this.value && !isWeekday(this.value)) {
@@ -945,62 +946,52 @@
     }
   });
 
-  // ── Logo preview ──
+  // Logo preview
   document.getElementById('logo-input').addEventListener('change', function() {
-    const file = this.files[0];
-    if (!file) return;
+    if (!this.files[0]) return;
     const reader = new FileReader();
     reader.onload = e => {
-      const preview = document.getElementById('logo-preview');
       document.getElementById('logo-img').src = e.target.result;
-      preview.style.display = 'block';
+      document.getElementById('logo-preview').style.display = 'block';
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(this.files[0]);
   });
 
-  // ── Toggle ──
-  const samplesToggle = document.getElementById('samples-toggle');
-  const toggleLabelText = document.getElementById('toggle-label-text');
-  const dateGroup = document.getElementById('fg-date');
-
+  // Toggle
+  const samplesToggle  = document.getElementById('samples-toggle');
+  const toggleLabelTxt = document.getElementById('toggle-label-text');
+  const dateGroup      = document.getElementById('fg-date');
   samplesToggle.addEventListener('change', function() {
     if (this.checked) {
-      toggleLabelText.textContent = 'Yes, send me a sample box of 10 meals 🎉';
+      toggleLabelTxt.textContent = 'Yes — send me a box of 10 meals 🎉';
       dateGroup.style.display = 'block';
     } else {
-      toggleLabelText.textContent = 'No thanks, not right now';
+      toggleLabelTxt.textContent = 'No thanks, not right now';
       dateGroup.style.display = 'none';
     }
   });
 
-  // ── Form validation & submit ──
+  // Form submit
   document.getElementById('sample-form').addEventListener('submit', function(e) {
     e.preventDefault();
     let valid = true;
 
-    function validate(fieldId, fgId, condition) {
+    function check(fgId, condition) {
       const fg = document.getElementById(fgId);
       if (!condition) { fg.classList.add('has-error'); valid = false; }
-      else { fg.classList.remove('has-error'); }
+      else             { fg.classList.remove('has-error'); }
     }
 
-    const bizName = document.getElementById('business-name').value.trim();
-    validate('business-name', 'fg-business-name', bizName.length > 0);
-
-    const addr = document.getElementById('address').value.trim();
-    validate('address', 'fg-address', addr.length > 0);
-
-    const email = document.getElementById('email').value.trim();
-    validate('email', 'fg-email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
-
-    const phone = document.getElementById('phone').value.trim();
-    validate('phone', 'fg-phone', phone.length >= 7);
+    check('fg-business-name', document.getElementById('business-name').value.trim().length > 0);
+    check('fg-address',       document.getElementById('address').value.trim().length > 0);
+    check('fg-email',         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value.trim()));
+    check('fg-phone',         document.getElementById('phone').value.trim().length >= 7);
 
     if (samplesToggle.checked) {
       const dv = dateInput.value;
-      const isValid = dv && isWeekday(dv) && dv >= toYYYYMMDD(minDate);
+      const ok = dv && isWeekday(dv) && dv >= toYYYYMMDD(minDate);
       const fg = document.getElementById('fg-date');
-      if (!isValid) {
+      if (!ok) {
         fg.classList.add('has-error');
         document.getElementById('date-error-msg').textContent = dv && !isWeekday(dv)
           ? 'Please choose a Monday–Friday date.'
@@ -1012,27 +1003,26 @@
     }
 
     if (!valid) {
-      // Scroll to first error
-      const firstError = document.querySelector('.form-group.has-error');
-      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const first = document.querySelector('.form-group.has-error');
+      if (first) first.scrollIntoView({ behavior:'smooth', block:'center' });
       return;
     }
 
     // Show confirmation
     const dateStr = dateInput.value;
-    const displayDate = dateStr ? formatDateNice(dateStr) : 'your chosen date';
-    document.getElementById('confirm-date-display').textContent = displayDate;
+    document.getElementById('confirm-date-display').textContent =
+      dateStr ? formatDateNice(dateStr) : 'your chosen date';
 
     document.getElementById('form-page').style.display = 'none';
-    const confirmPage = document.getElementById('confirmation-page');
-    confirmPage.style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('confirmation-page').style.display = 'block';
+    window.scrollTo({ top: 0, behavior:'smooth' });
   });
 
-  // ── Scroll reveal ──
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.1 });
+  // Scroll reveal
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1 }
+  );
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>

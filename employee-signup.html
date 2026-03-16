@@ -4,238 +4,206 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calo for Teams — Join Your Team's Meal Programme</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green: #3dad69;
-      --green-dark: #104b34;
-      --green-mid: #1c7e57;
-      --green-hover: #2ea458;
-      --purple: #985798;
-      --gray: #697886;
-      --light-gray: #f7f7f7;
-      --border: #e2e8f0;
-      --white: #ffffff;
-      --error: #e2574c;
+      --green:       #38B675;
+      --green-dark:  #104B34;
+      --green-mid:   #1d7a50;
+      --green-hover: #2fa366;
+      --green-light: #edf7f2;
+      --green-glow:  rgba(56,182,117,0.18);
+      --gray:        #6b7a8d;
+      --light-gray:  #f5f7f5;
+      --border:      #dde8e2;
+      --white:       #ffffff;
+      --error:       #e2574c;
+      --text:        #1a2e22;
     }
 
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Lato', sans-serif;
-      background: #f0f5f2;
-      color: #2d3748;
+      background: #f5f7f5;
+      color: var(--text);
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* ── HEADER ── */
     header {
       background: var(--green-dark);
-      padding: 18px 0;
+      padding: 16px 0;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
     }
     .header-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
+    .logo-wrap {
+      display: flex; align-items: center; gap: 14px; text-decoration: none;
     }
-    .logo-mark {
-      width: 38px;
-      height: 38px;
-      background: var(--green);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 20px;
-      color: white;
+    .logo-divider { width: 1px; height: 24px; background: rgba(255,255,255,0.25); }
+    .logo-sub { color: rgba(255,255,255,0.75); font-size: 15px; font-weight: 400; letter-spacing: 0.5px; }
+    .header-award {
+      display: flex; align-items: center; gap: 7px;
+      background: rgba(56,182,117,0.15); border: 1px solid rgba(56,182,117,0.4);
+      border-radius: 100px; padding: 7px 16px;
+      color: #7ee8a2; font-size: 12.5px; font-weight: 700; letter-spacing: 0.3px;
     }
-    .logo-text { color: white; font-size: 22px; font-weight: 900; }
-    .logo-text span { color: var(--green); }
-    .header-badge {
-      background: rgba(61,173,105,0.2);
-      border: 1px solid var(--green);
-      border-radius: 100px;
-      padding: 6px 16px;
-      color: var(--green);
-      font-size: 13px;
-      font-weight: 700;
-    }
+    .header-award .star { color: #fbbf24; }
 
     /* ── HERO ── */
     .hero {
-      background: linear-gradient(135deg, var(--green-dark) 0%, #1a6644 50%, #0d3d28 100%);
-      padding: 60px 24px 40px;
+      background: var(--green-dark);
+      padding: 72px 28px 0;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
     .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="35" fill="rgba(61,173,105,0.07)"/><circle cx="90" cy="90" r="55" fill="rgba(61,173,105,0.05)"/></svg>');
-      background-size: cover;
+      content: ''; position: absolute;
+      width: 700px; height: 700px; border-radius: 50%;
+      top: -300px; right: -100px;
+      background: radial-gradient(circle, rgba(56,182,117,0.12) 0%, transparent 70%);
     }
-    .hero-inner { position: relative; max-width: 700px; margin: 0 auto; }
+    .hero-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
     .hero-eyebrow {
-      display: inline-block;
-      background: rgba(61,173,105,0.25);
-      border: 1px solid rgba(61,173,105,0.5);
-      color: #7ee8a2;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border-radius: 100px;
-      padding: 6px 18px;
-      margin-bottom: 18px;
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(56,182,117,0.2); border: 1px solid rgba(56,182,117,0.45);
+      color: #8ef0b8; font-size: 12px; font-weight: 700;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      border-radius: 100px; padding: 7px 20px; margin-bottom: 22px;
+      animation: fadeUp 0.6s ease both;
     }
     .hero h1 {
-      font-size: clamp(28px, 4.5vw, 48px);
-      font-weight: 900;
-      color: white;
-      line-height: 1.2;
-      margin-bottom: 14px;
+      font-size: clamp(28px, 4.5vw, 50px); font-weight: 900;
+      color: white; line-height: 1.15; margin-bottom: 16px;
+      letter-spacing: -1px;
+      animation: fadeUp 0.6s 0.1s ease both;
     }
-    .hero h1 span { color: var(--green); }
+    .hero h1 em { font-style: normal; color: var(--green); }
     .hero p {
-      font-size: 17px;
-      color: rgba(255,255,255,0.82);
-      line-height: 1.7;
-      max-width: 560px;
-      margin: 0 auto;
+      font-size: 17px; color: rgba(255,255,255,0.75);
+      line-height: 1.75; max-width: 540px; margin: 0 auto;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
     }
 
     /* ── USP BOXES ── */
     .usp-section {
       background: var(--green-dark);
-      padding: 0 24px 48px;
+      padding: 40px 28px 52px;
     }
     .usp-boxes {
-      max-width: 1200px;
-      margin: 0 auto;
+      max-width: 1200px; margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 14px;
     }
-    @media (max-width: 900px) { .usp-boxes { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 500px) { .usp-boxes { grid-template-columns: 1fr; } }
+    @media (max-width: 960px)  { .usp-boxes { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 580px)  { .usp-boxes { grid-template-columns: repeat(2, 1fr); } }
 
     .usp-box {
       background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 16px;
-      padding: 20px 16px;
-      text-align: center;
-      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px; padding: 22px 16px; text-align: center;
+      transition: background 0.25s, border-color 0.25s, transform 0.25s;
     }
     .usp-box:hover {
-      background: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.13);
       border-color: var(--green);
       transform: translateY(-3px);
     }
-    .usp-box .emoji { font-size: 28px; margin-bottom: 10px; display: block; }
+    .usp-box .emoji { font-size: 30px; margin-bottom: 12px; display: block; }
     .usp-box h3 { font-size: 13px; font-weight: 900; color: white; margin-bottom: 6px; line-height: 1.3; }
-    .usp-box p { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.4; }
+    .usp-box p  { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.45; }
 
-    /* Awards strip */
+    /* ── AWARDS STRIP ── */
     .awards-strip {
-      background: var(--light-gray);
+      background: white;
       border-bottom: 1px solid var(--border);
-      padding: 16px 24px;
-      text-align: center;
+      padding: 16px 28px;
     }
     .awards-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: center; gap: 28px; flex-wrap: wrap;
     }
     .award {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--green-dark);
+      display: flex; align-items: center; gap: 7px;
+      font-size: 13px; font-weight: 700; color: var(--green-dark);
     }
-    .award .star { color: #fbbf24; font-size: 15px; }
+    .award .star { color: #fbbf24; }
 
-    /* ── MAIN ── */
-    .main-wrapper {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
-    }
+    /* ── MAIN WRAPPER ── */
+    .main-wrapper { max-width: 1200px; margin: 0 auto; padding: 52px 28px 96px; }
 
     .section-intro {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 28px;
-      flex-wrap: wrap;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 20px; margin-bottom: 28px; flex-wrap: wrap;
     }
-    .section-intro-text h2 { font-size: 24px; font-weight: 900; color: var(--green-dark); margin-bottom: 6px; }
-    .section-intro-text p { font-size: 14px; color: var(--gray); line-height: 1.5; max-width: 520px; }
+    .section-intro-text h2 {
+      font-size: 26px; font-weight: 900; color: var(--green-dark);
+      margin-bottom: 6px; letter-spacing: -0.4px;
+    }
+    .section-intro-text p { font-size: 14px; color: var(--gray); line-height: 1.6; max-width: 520px; }
+
+    .count-badge {
+      display: flex; align-items: center; gap: 10px;
+      background: white; border: 1.5px solid var(--border);
+      border-radius: 14px; padding: 14px 20px;
+      box-shadow: 0 2px 10px rgba(16,75,52,0.06);
+      flex-shrink: 0;
+    }
+    .count-badge-icon { font-size: 20px; }
+    .count-badge-num  { font-size: 22px; font-weight: 900; color: var(--green-dark); line-height: 1; }
+    .count-badge-label { font-size: 12px; color: var(--gray); }
 
     /* ── TABLE CARD ── */
     .table-card {
       background: white;
-      border-radius: 20px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      border-radius: 24px;
+      box-shadow: 0 4px 28px rgba(16,75,52,0.08);
       border: 1px solid var(--border);
       overflow: hidden;
     }
 
-    /* Table header */
     .table-head {
       display: grid;
       grid-template-columns: 48px 1fr 1fr 1fr 1.4fr 1.2fr 52px;
-      gap: 0;
       background: var(--green-dark);
-      padding: 0;
     }
-    @media (max-width: 800px) {
-      .table-head { display: none; }
-    }
+    @media (max-width: 800px) { .table-head { display: none; } }
+
     .th {
       padding: 14px 12px;
-      font-size: 11.5px;
-      font-weight: 900;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.75);
-      border-right: 1px solid rgba(255,255,255,0.08);
+      font-size: 11px; font-weight: 900;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      border-right: 1px solid rgba(255,255,255,0.07);
     }
     .th:last-child { border-right: none; }
     .th.center { text-align: center; }
 
-    /* Rows container */
     #rows-container { padding: 16px 16px 0; }
 
     /* Employee Row */
     .employee-row {
       display: grid;
       grid-template-columns: 48px 1fr 1fr 1fr 1.4fr 1.2fr 52px;
-      gap: 10px;
-      align-items: start;
+      gap: 10px; align-items: start;
       padding: 14px 0;
       border-bottom: 1px solid var(--border);
       animation: slideIn 0.25s ease-out;
@@ -245,226 +213,145 @@
 
     @media (max-width: 800px) {
       .employee-row {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        background: white;
-        border: 1.5px solid var(--border);
-        border-radius: 14px;
-        padding: 16px;
-        margin-bottom: 12px;
-        position: relative;
+        grid-template-columns: 1fr; gap: 10px;
+        border: 1.5px solid var(--border); border-radius: 16px;
+        padding: 18px; margin-bottom: 12px; position: relative;
       }
     }
 
     .row-num {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      background: var(--light-gray);
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 900;
-      color: var(--gray);
-      margin-top: 9px;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+      background: var(--green-light); border-radius: 8px;
+      font-size: 13px; font-weight: 900; color: var(--green-dark);
+      margin-top: 9px; flex-shrink: 0;
     }
     @media (max-width: 800px) {
-      .row-num { position: absolute; top: 16px; right: 56px; margin-top: 0; }
+      .row-num { position: absolute; top: 18px; right: 60px; margin-top: 0; }
     }
 
     .cell { display: flex; flex-direction: column; gap: 4px; }
     .cell label {
-      display: none;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      color: var(--gray);
+      display: none; font-size: 10.5px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray);
     }
     @media (max-width: 800px) { .cell label { display: block; } }
 
-    .cell input,
-    .cell select {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1.5px solid var(--border);
-      border-radius: 9px;
-      font-family: 'Lato', sans-serif;
-      font-size: 14px;
-      color: #2d3748;
-      background: white;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none;
+    .cell input, .cell select {
+      width: 100%; padding: 10px 13px;
+      border: 1.5px solid var(--border); border-radius: 10px;
+      font-family: 'Lato', sans-serif; font-size: 14px; color: var(--text);
+      background: white; transition: border-color 0.2s, box-shadow 0.2s; outline: none;
     }
     .cell input:focus, .cell select:focus {
       border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(61,173,105,0.12);
+      box-shadow: 0 0 0 3px rgba(56,182,117,0.14);
     }
-    .cell input.has-error, .cell select.has-error {
-      border-color: var(--error);
-    }
+    .cell input.has-error, .cell select.has-error { border-color: var(--error); }
     .cell select { cursor: pointer; }
 
-    /* Allergies cell has two inputs stacked */
     .allergy-inputs { display: flex; flex-direction: column; gap: 6px; }
-    .allergy-inputs input { font-size: 13px; padding: 8px 10px; }
+    .allergy-inputs input { font-size: 13px; padding: 8px 11px; }
     .allergy-add-btn {
-      background: none;
-      border: 1.5px dashed var(--border);
-      border-radius: 8px;
-      padding: 6px 10px;
-      font-size: 12px;
-      color: var(--green);
-      cursor: pointer;
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      transition: border-color 0.2s, background 0.2s;
-      text-align: left;
+      background: none; border: 1.5px dashed var(--border); border-radius: 9px;
+      padding: 7px 11px; font-size: 12px; color: var(--green);
+      cursor: pointer; font-family: 'Lato', sans-serif; font-weight: 700;
+      transition: border-color 0.2s, background 0.2s; text-align: left;
     }
-    .allergy-add-btn:hover { border-color: var(--green); background: rgba(61,173,105,0.04); }
+    .allergy-add-btn:hover { border-color: var(--green); background: rgba(56,182,117,0.04); }
 
-    /* Delete button */
     .delete-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border: none;
-      background: #fff1f0;
-      border-radius: 9px;
-      color: var(--error);
-      cursor: pointer;
-      font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      border: none; background: #fff0ef; border-radius: 9px;
+      color: var(--error); cursor: pointer; font-size: 15px;
       transition: background 0.2s, transform 0.1s;
-      margin-top: 8px;
-      flex-shrink: 0;
+      margin-top: 8px; flex-shrink: 0;
     }
-    .delete-btn:hover { background: #ffe0de; }
-    .delete-btn:active { transform: scale(0.93); }
+    .delete-btn:hover  { background: #ffdcda; }
+    .delete-btn:active { transform: scale(0.92); }
     @media (max-width: 800px) {
-      .delete-btn { position: absolute; top: 16px; right: 16px; margin-top: 0; }
+      .delete-btn { position: absolute; top: 18px; right: 18px; margin-top: 0; }
     }
 
-    /* Add row row */
     .add-row-wrapper {
       padding: 16px;
       border-top: 1.5px dashed var(--border);
-      margin-top: 4px;
     }
     .add-row-btn {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(61,173,105,0.06);
-      border: 1.5px dashed var(--green);
-      border-radius: 12px;
-      padding: 13px 20px;
-      color: var(--green);
-      font-family: 'Lato', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      width: 100%;
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(56,182,117,0.06); border: 1.5px dashed var(--green);
+      border-radius: 14px; padding: 14px 20px;
+      color: var(--green); font-family: 'Lato', sans-serif;
+      font-size: 15px; font-weight: 700; cursor: pointer; width: 100%;
       transition: background 0.2s;
     }
-    .add-row-btn:hover { background: rgba(61,173,105,0.1); }
+    .add-row-btn:hover { background: rgba(56,182,117,0.11); }
     .add-row-btn .plus {
-      width: 28px;
-      height: 28px;
-      background: var(--green);
-      color: white;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      font-weight: 300;
-      line-height: 1;
-      flex-shrink: 0;
+      width: 30px; height: 30px;
+      background: var(--green); color: white; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 300; line-height: 1; flex-shrink: 0;
     }
 
     /* ── SUBMIT SECTION ── */
-    .submit-section {
-      margin-top: 32px;
-      text-align: center;
-    }
+    .submit-section { margin-top: 36px; text-align: center; }
+
     .countdown-notice {
-      background: rgba(61,173,105,0.08);
-      border: 1.5px solid rgba(61,173,105,0.3);
-      border-radius: 14px;
-      padding: 18px 24px;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-align: left;
+      background: white; border: 1.5px solid var(--border);
+      border-radius: 18px; padding: 20px 26px; margin-bottom: 28px;
+      display: flex; align-items: center; gap: 16px; text-align: left;
+      box-shadow: 0 2px 12px rgba(16,75,52,0.06);
     }
-    .countdown-icon { font-size: 28px; flex-shrink: 0; }
-    .countdown-notice p { font-size: 14px; color: var(--green-dark); line-height: 1.5; }
-    .countdown-notice strong { font-weight: 900; }
+    .countdown-icon { font-size: 30px; flex-shrink: 0; }
+    .countdown-notice p { font-size: 14px; color: var(--text); line-height: 1.6; }
+    .countdown-notice strong { color: var(--green-dark); font-weight: 900; }
+    .countdown-accent { color: var(--green); font-weight: 700; }
 
     .btn-primary {
-      background: var(--green);
-      color: white;
-      border: none;
-      border-radius: 100px;
-      padding: 17px 56px;
-      font-family: 'Lato', sans-serif;
-      font-size: 18px;
-      font-weight: 900;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(61,173,105,0.4);
+      background: var(--green); color: white; border: none;
+      border-radius: 100px; padding: 18px 60px;
+      font-family: 'Lato', sans-serif; font-size: 18px; font-weight: 900;
+      cursor: pointer; transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 6px 24px rgba(56,182,117,0.4); letter-spacing: 0.2px;
     }
-    .btn-primary:hover { background: var(--green-hover); box-shadow: 0 6px 28px rgba(61,173,105,0.5); }
+    .btn-primary:hover  { background: var(--green-hover); box-shadow: 0 8px 32px rgba(56,182,117,0.5); }
     .btn-primary:active { transform: scale(0.97); }
 
-    .submit-sub {
-      margin-top: 12px;
-      font-size: 13px;
-      color: var(--gray);
-    }
+    .submit-sub { margin-top: 14px; font-size: 13.5px; color: var(--gray); }
     .submit-sub strong { color: var(--green-dark); }
 
-    /* ── CONFIRMATION STATE ── */
+    /* ── CONFIRMATION ── */
     #roster-confirmation {
-      display: none;
-      text-align: center;
-      padding: 60px 24px 80px;
-      max-width: 680px;
-      margin: 0 auto;
+      display: none; text-align: center;
+      padding: 80px 28px 96px;
+      max-width: 680px; margin: 0 auto;
     }
-    .confirm-icon { font-size: 64px; display: block; margin-bottom: 20px; animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .confirm-icon-large { font-size: 64px; display: block; margin-bottom: 22px; animation: pop 0.5s cubic-bezier(0.34,1.56,0.64,1); }
     @keyframes pop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    #roster-confirmation h2 { font-size: 32px; font-weight: 900; color: var(--green-dark); margin-bottom: 12px; }
-    #roster-confirmation p { font-size: 16px; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
+    #roster-confirmation h2 {
+      font-size: 34px; font-weight: 900; color: var(--green-dark);
+      margin-bottom: 14px; letter-spacing: -0.5px;
+    }
+    #roster-confirmation p { font-size: 16px; color: var(--gray); line-height: 1.75; margin-bottom: 20px; }
     .start-date-box {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--green);
-      border-radius: 14px;
-      padding: 16px 28px;
-      color: white;
-      font-size: 16px;
-      font-weight: 700;
-      margin-top: 8px;
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--green-dark); border-radius: 16px;
+      padding: 18px 32px; color: white; font-size: 16px; font-weight: 700;
+      margin-top: 10px;
+      box-shadow: 0 6px 24px rgba(16,75,52,0.3);
     }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--green-dark);
-      padding: 32px 24px;
-      text-align: center;
+      background: var(--green-dark); padding: 36px 28px; text-align: center;
     }
-    footer p { color: rgba(255,255,255,0.5); font-size: 13px; }
-    footer a { color: var(--green); }
+    footer p { color: rgba(255,255,255,0.45); font-size: 13px; line-height: 1.7; }
+    footer a { color: var(--green); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
 
-    /* Scroll reveal */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .reveal.visible { opacity: 1; transform: none; }
   </style>
 </head>
@@ -473,20 +360,28 @@
 <!-- HEADER -->
 <header>
   <div class="header-inner">
-    <a href="https://try.calo.app/calo-for-business/" class="logo" target="_blank">
-      <div class="logo-mark">C</div>
-      <span class="logo-text">calo <span>for teams</span></span>
+    <a href="https://try.calo.app/calo-for-business/" class="logo-wrap" target="_blank">
+      <svg width="72" height="31" viewBox="0 0 746 320" fill="white" xmlns="http://www.w3.org/2000/svg" aria-label="Calo">
+        <path d="M89.2,299.5c-18.1,0-33.5-6.3-46.1-19s-18.9-28-18.9-46v-149c0-18,6.4-33.4,19.1-46c12.7-12.7,28.1-19,45.9-19c18.1,0,33.4,6.4,46,19.1c12.6,12.7,18.9,28,18.9,46v31h-42.5V84.8c0-6.6-2.3-12.2-6.9-16.8s-10.2-6.9-16.8-6.9c-6.5,0-12,2.3-16.6,6.9c-4.6,4.6-6.9,10.2-6.9,16.8v149.4c0,6.6,2.3,12.1,6.9,16.7c4.6,4.6,10.1,6.9,16.6,6.9c6.6,0,12.2-2.3,16.8-6.9s6.9-10.2,6.9-16.7v-37.5h42.5v37.9c0,18.1-6.4,33.5-19.1,46C122.3,293.2,107,299.5,89.2,299.5z"/>
+        <path d="M260.7,233.5l-10,62.5h-42.7l46.1-272.1h56.5l45.5,272.1h-43l-9.7-62.5H260.7z M282.2,86.3L267,193.6h30.4L282.2,86.3z"/>
+        <path d="M533.3,296.1H421.4V23.9h41v231.4h70.9L533.3,296.1L533.3,296.1z"/>
+        <path d="M656.7,20.6c18.1,0,33.5,6.4,46.2,19.1s19,28.1,19,46.1v148.4c0,18.1-6.4,33.5-19.1,46.2c-12.7,12.7-28.1,19-46.1,19s-33.3-6.4-45.9-19.1c-12.6-12.7-18.9-28.1-18.9-46.1V85.9c0-18.1,6.4-33.5,19.1-46.2C623.7,27,639,20.6,656.7,20.6z M679,85.1c0-6.6-2.3-12.1-6.8-16.6c-4.5-4.5-10.1-6.8-16.6-6.8c-6.5,0-12,2.3-16.6,6.8S632,78.5,632,85.1V234c0,6.5,2.3,12,6.9,16.5s10.2,6.9,16.6,6.9c6.6,0,12.1-2.3,16.6-6.9c4.5-4.6,6.8-10.1,6.8-16.5V85.1z"/>
+      </svg>
+      <div class="logo-divider"></div>
+      <span class="logo-sub">for teams</span>
     </a>
-    <div class="header-badge">🌱 Voted #1 UK Healthy Meal Delivery</div>
+    <div class="header-award">
+      <span class="star">★</span> Voted #1 UK Healthy Meal Delivery
+    </div>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">Team Roster</div>
-    <h1>Sign up for your<br/><span>daily Calo meal</span></h1>
-    <p>Your employer has chosen Calo for Teams as a workplace perk. Add your details below to join the programme — tell us your dietary preferences and we'll take care of the rest.</p>
+    <div class="hero-eyebrow">🥗 Your Daily Lunch Perk</div>
+    <h1>Your employer is feeding you.<br/><em>Sign up in 30 seconds.</em></h1>
+    <p>Your company has chosen Calo for Teams as your workplace perk. Add your details below — tell us your dietary preferences and we'll take care of the rest.</p>
   </div>
 </section>
 
@@ -496,7 +391,7 @@
     <div class="usp-box">
       <span class="emoji">🏢</span>
       <h3>Your Lunchtime Reason to Come In</h3>
-      <p>A fresh, healthy meal waiting for you at the office every day.</p>
+      <p>A fresh, healthy meal waiting at the office every day.</p>
     </div>
     <div class="usp-box">
       <span class="emoji">🤝</span>
@@ -515,8 +410,8 @@
     </div>
     <div class="usp-box">
       <span class="emoji">🔄</span>
-      <h3>Flexible Swaps with 1 Day's Notice</h3>
-      <p>Change your meal with just one working day's notice. You're always in control.</p>
+      <h3>Swap with 1 Day's Notice</h3>
+      <p>Change your meal with just one working day's notice. Always in control.</p>
     </div>
   </div>
 </div>
@@ -534,24 +429,22 @@
 <!-- MAIN CONTENT -->
 <div class="main-wrapper">
 
-  <!-- Intro -->
   <div class="section-intro reveal">
     <div class="section-intro-text">
       <h2>Team Meal Registration</h2>
-      <p>Add each team member below. You can share this page link with your colleagues and let everyone fill in their own row — or fill it in yourself. Hit <strong>Submit Roster</strong> when everyone's in.</p>
+      <p>Add each team member below. Share this page with colleagues and let everyone fill in their own row — or fill it in yourself. Hit <strong>Submit Roster</strong> when everyone's added.</p>
     </div>
-    <div style="display:flex; align-items:center; gap:8px; background:rgba(61,173,105,0.08); border:1.5px solid rgba(61,173,105,0.25); border-radius:12px; padding:12px 18px; white-space:nowrap; flex-shrink:0;">
-      <span style="font-size:18px;">👥</span>
+    <div class="count-badge">
+      <span class="count-badge-icon">👥</span>
       <div>
-        <div style="font-size:20px; font-weight:900; color:var(--green-dark);" id="row-count-display">1</div>
-        <div style="font-size:12px; color:var(--gray);">Team members</div>
+        <div class="count-badge-num" id="row-count-display">1</div>
+        <div class="count-badge-label">Team members</div>
       </div>
     </div>
   </div>
 
-  <!-- Table Card -->
+  <!-- TABLE CARD -->
   <div class="table-card reveal">
-    <!-- Desktop header -->
     <div class="table-head">
       <div class="th center">#</div>
       <div class="th">Full Name</div>
@@ -561,13 +454,7 @@
       <div class="th">Severe Allergies</div>
       <div class="th center">Del</div>
     </div>
-
-    <!-- Rows -->
-    <div id="rows-container">
-      <!-- First row injected by JS -->
-    </div>
-
-    <!-- Add Row -->
+    <div id="rows-container"></div>
     <div class="add-row-wrapper">
       <button class="add-row-btn" id="add-row-btn" type="button">
         <span class="plus">+</span>
@@ -576,22 +463,23 @@
     </div>
   </div>
 
-  <!-- Submit Section -->
+  <!-- SUBMIT -->
   <div class="submit-section reveal" id="submit-section">
     <div class="countdown-notice">
       <span class="countdown-icon">⏱️</span>
       <p>The sooner you submit, the sooner your team eats.<br/>
-      <strong>Your Calo for Teams programme can start 1+ week from the date of submission.</strong> Don't keep your team waiting — every day you delay is a day without meals!</p>
+      <strong>Your Calo for Teams programme can start 1+ week from the date of submission.</strong>
+      <span class="countdown-accent"> Don't keep your team waiting — every day you delay is a day without meals!</span></p>
     </div>
     <button class="btn-primary" id="submit-roster-btn" type="button">Submit Roster →</button>
-    <p class="submit-sub" id="submit-sub-text">Submitting for <strong id="submit-count">1</strong> team member(s)</p>
+    <p class="submit-sub">Submitting for <strong id="submit-count">1</strong> team member(s)</p>
   </div>
 
-  <!-- Confirmation (hidden until submit) -->
+  <!-- CONFIRMATION -->
   <div id="roster-confirmation">
-    <span class="confirm-icon">🎉</span>
+    <span class="confirm-icon-large">🎉</span>
     <h2>Your team is registered!</h2>
-    <p>Welcome to Calo for Teams. Your roster has been submitted and our team will be in touch to confirm your programme details. Get ready for fresh, healthy lunches that your team will love.</p>
+    <p>Welcome to Calo for Teams. Your roster has been submitted and our team will be in touch to confirm your programme details. Get ready for fresh, healthy lunches your team will love.</p>
     <p style="font-size:14px;">Voted <strong style="color:var(--green-dark)">Best Healthy Meal Delivery in the UK</strong> — and now your team gets to find out why.</p>
     <div class="start-date-box">
       <span>🚀</span>
@@ -603,20 +491,24 @@
 </div><!-- /main-wrapper -->
 
 <footer>
-  <p>© 2025 <strong style="color:var(--green)">Calo for Teams</strong> · Voted Best Healthy Meal Delivery in the UK · <a href="https://try.calo.app/calo-for-business/">Learn more</a></p>
+  <p>
+    © 2025 <a href="https://try.calo.app/calo-for-business/">Calo for Teams</a> &nbsp;·&nbsp;
+    Voted Best Healthy Meal Delivery in the UK &nbsp;·&nbsp;
+    <a href="https://try.calo.app/calo-for-business/">Learn more</a>
+  </p>
 </footer>
 
 
 <script>
   const DIET_OPTIONS = [
-    { value: '', label: 'Select preference…' },
+    { value: '',              label: 'Select preference…',   disabled: true },
     { value: 'no-preference', label: 'No preference / Omnivore' },
-    { value: 'vegetarian', label: '🥦 Vegetarian' },
-    { value: 'vegan', label: '🌱 Vegan' },
-    { value: 'high-protein', label: '💪 High Protein' },
-    { value: 'pescatarian', label: '🐟 Pescatarian' },
-    { value: 'halal', label: '☪️ Halal' },
-    { value: 'gluten-free', label: '🌾 Gluten Free' },
+    { value: 'vegetarian',    label: '🥦 Vegetarian' },
+    { value: 'vegan',         label: '🌱 Vegan' },
+    { value: 'high-protein',  label: '💪 High Protein' },
+    { value: 'pescatarian',   label: '🐟 Pescatarian' },
+    { value: 'halal',         label: '☪️ Halal' },
+    { value: 'gluten-free',   label: '🌾 Gluten Free' },
   ];
 
   let rowCount = 0;
@@ -632,14 +524,11 @@
     numCell.textContent = num;
     row.appendChild(numCell);
 
-    // Name
-    row.appendChild(makeInputCell('Full Name', 'text', 'e.g. Jane Smith', true));
-    // Email
-    row.appendChild(makeInputCell('Work Email', 'email', 'jane@company.com', true));
-    // Phone
-    row.appendChild(makeInputCell('Phone', 'tel', '+44 7700 000000', false));
+    row.appendChild(makeInputCell('Full Name',   'text',  'e.g. Jane Smith',      true));
+    row.appendChild(makeInputCell('Work Email',  'email', 'jane@company.com',     true));
+    row.appendChild(makeInputCell('Phone',       'tel',   '+44 7700 000000',      false));
 
-    // Diet
+    // Diet select
     const dietCell = document.createElement('div');
     dietCell.className = 'cell';
     const dietLabel = document.createElement('label');
@@ -649,7 +538,7 @@
       const o = document.createElement('option');
       o.value = opt.value;
       o.textContent = opt.label;
-      if (!opt.value) o.disabled = true;
+      if (opt.disabled) { o.disabled = true; }
       dietSelect.appendChild(o);
     });
     dietSelect.value = '';
@@ -678,33 +567,25 @@
     row.appendChild(allergyCell);
 
     // Delete
-    const deleteCell = document.createElement('div');
-    deleteCell.style.display = 'flex';
-    deleteCell.style.alignItems = 'flex-start';
-    deleteCell.style.paddingTop = '8px';
+    const deleteWrap = document.createElement('div');
+    deleteWrap.style.cssText = 'display:flex;align-items:flex-start;padding-top:8px;';
     const deleteBtn = document.createElement('button');
     deleteBtn.type = 'button';
     deleteBtn.className = 'delete-btn';
     deleteBtn.innerHTML = '✕';
     deleteBtn.title = 'Remove this row';
     deleteBtn.addEventListener('click', () => {
-      row.style.opacity = '0';
-      row.style.transform = 'scale(0.95)';
-      row.style.transition = 'opacity 0.2s, transform 0.2s';
-      setTimeout(() => {
-        row.remove();
-        renumberRows();
-        updateCounts();
-      }, 200);
+      row.style.cssText = 'opacity:0;transform:scale(0.95);transition:opacity 0.2s,transform 0.2s;';
+      setTimeout(() => { row.remove(); renumberRows(); updateCounts(); }, 200);
     });
-    deleteCell.appendChild(deleteBtn);
-    row.appendChild(deleteCell);
+    deleteWrap.appendChild(deleteBtn);
+    row.appendChild(deleteWrap);
 
     return row;
   }
 
   function makeInputCell(labelText, type, placeholder, required) {
-    const cell = document.createElement('div');
+    const cell  = document.createElement('div');
     cell.className = 'cell';
     const label = document.createElement('label');
     label.textContent = labelText + (required ? ' *' : '');
@@ -724,8 +605,7 @@
   }
 
   function renumberRows() {
-    const rows = document.querySelectorAll('#rows-container .employee-row');
-    rows.forEach((row, i) => {
+    document.querySelectorAll('#rows-container .employee-row').forEach((row, i) => {
       const num = row.querySelector('.row-num');
       if (num) num.textContent = i + 1;
     });
@@ -741,34 +621,25 @@
 
   function addRow() {
     const container = document.getElementById('rows-container');
-    const currentCount = container.querySelectorAll('.employee-row').length;
-    const row = createRow(currentCount + 1);
+    const row = createRow(container.querySelectorAll('.employee-row').length + 1);
     container.appendChild(row);
     updateCounts();
-    // Focus first input of new row
-    setTimeout(() => {
-      const inputs = row.querySelectorAll('input');
-      if (inputs[0]) inputs[0].focus();
-    }, 50);
+    setTimeout(() => { const inputs = row.querySelectorAll('input'); if (inputs[0]) inputs[0].focus(); }, 50);
   }
 
-  // Date helper
+  // Date helpers
   function addWeeks(date, weeks) {
     const d = new Date(date);
     d.setDate(d.getDate() + weeks * 7);
-    // Ensure it's a Monday if lands on weekend
     while (d.getDay() === 0 || d.getDay() === 6) d.setDate(d.getDate() + 1);
     return d;
   }
-
   function formatDate(date) {
-    return date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    return date.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
   }
 
-  // Init first row
+  // Init
   addRow();
-
-  // Add row button
   document.getElementById('add-row-btn').addEventListener('click', addRow);
 
   // Submit
@@ -778,18 +649,14 @@
 
     rows.forEach(row => {
       const inputs = row.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
-      const nameInput = inputs[0];
+      const nameInput  = inputs[0];
       const emailInput = inputs[1];
-
-      // Clear previous errors
       row.querySelectorAll('input, select').forEach(el => el.classList.remove('has-error'));
 
-      // Name required
       if (!nameInput || !nameInput.value.trim()) {
         if (nameInput) nameInput.classList.add('has-error');
         valid = false;
       }
-      // Email required + format
       if (!emailInput || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
         if (emailInput) emailInput.classList.add('has-error');
         valid = false;
@@ -798,27 +665,24 @@
 
     if (!valid) {
       const firstError = document.querySelector('.employee-row input.has-error');
-      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (firstError) firstError.scrollIntoView({ behavior:'smooth', block:'center' });
       return;
     }
 
     // Success
-    const startDate = addWeeks(new Date(), 1);
-    document.getElementById('programme-start-date').textContent = formatDate(startDate);
-
-    document.querySelector('.table-card').style.display = 'none';
+    document.getElementById('programme-start-date').textContent = formatDate(addWeeks(new Date(), 1));
+    document.querySelector('.table-card').style.display     = 'none';
     document.getElementById('submit-section').style.display = 'none';
-    document.querySelector('.section-intro').style.display = 'none';
-
-    const confirmation = document.getElementById('roster-confirmation');
-    confirmation.style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.querySelector('.section-intro').style.display  = 'none';
+    document.getElementById('roster-confirmation').style.display = 'block';
+    window.scrollTo({ top: 0, behavior:'smooth' });
   });
 
   // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.08 }
+  );
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
