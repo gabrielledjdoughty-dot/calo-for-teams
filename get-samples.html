@@ -1014,6 +1014,24 @@
       return;
     }
 
+    // Send to Make → Slack
+    const dietaryPrefs = [...document.querySelectorAll('input[name="diet"]:checked')]
+      .map(cb => cb.value).join(', ') || 'None selected';
+    fetch('https://hook.eu1.make.com/krw4igl64cp8ocaql88tigai56x7s1wk', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        business_name:          document.getElementById('business-name').value.trim(),
+        office_address:         document.getElementById('address').value.trim(),
+        work_email:             document.getElementById('email').value.trim(),
+        phone_number:           document.getElementById('phone').value.trim(),
+        delivery_date:          dateInput.value,
+        dietary_preferences:    dietaryPrefs,
+        delivery_instructions:  document.getElementById('delivery-instructions').value.trim(),
+        wants_sample_box:       samplesToggle.checked ? 'Yes' : 'No'
+      })
+    });
+
     // Show confirmation
     const dateStr = dateInput.value;
     document.getElementById('confirm-date-display').textContent =
