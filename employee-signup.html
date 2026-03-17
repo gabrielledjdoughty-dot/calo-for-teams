@@ -779,11 +779,8 @@
     // POST to Google Sheets (skip if URL not yet configured)
     if (SHEETS_URL && SHEETS_URL !== 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
       try {
-        await fetch(SHEETS_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: JSON.stringify({ type: 'employees', employees }),
-        });
+        const payload = encodeURIComponent(JSON.stringify({ type: 'employees', employees }));
+        await fetch(SHEETS_URL + '?data=' + payload, { mode: 'no-cors' });
       } catch (err) {
         console.warn('Sheets submission failed:', err);
       }
