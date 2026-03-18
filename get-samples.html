@@ -353,7 +353,7 @@
     /* Diet grid */
     .diet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .diet-option {
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; flex-wrap: nowrap; gap: 10px;
       padding: 11px 14px;
       border: 1.5px solid var(--border); border-radius: 12px;
       cursor: pointer; transition: border-color 0.2s, background 0.2s;
@@ -723,37 +723,37 @@
             <label class="diet-option">
               <input type="checkbox" name="diet" value="no-preference" />
               <span class="diet-check"></span>
-              <span>✅</span><span>No preference / all meals</span>
+              <span>✅ No preference / all meals</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="vegetarian" />
               <span class="diet-check"></span>
-              <span>🥦</span><span>Vegetarian</span>
+              <span>🥦 Vegetarian</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="vegan" />
               <span class="diet-check"></span>
-              <span>🌱</span><span>Vegan</span>
+              <span>🌱 Vegan</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="high-protein" />
               <span class="diet-check"></span>
-              <span>💪</span><span>High Protein</span>
+              <span>💪 High Protein</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="pescatarian" />
               <span class="diet-check"></span>
-              <span>🐟</span><span>Pescatarian</span>
+              <span>🐟 Pescatarian</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="halal" />
               <span class="diet-check"></span>
-              <span>☪️</span><span>Halal</span>
+              <span>☪️ Halal</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="gluten-free" />
               <span class="diet-check"></span>
-              <span>🌾</span><span>Gluten Free</span>
+              <span>🌾 Gluten Free</span>
             </label>
           </div>
         </div>
