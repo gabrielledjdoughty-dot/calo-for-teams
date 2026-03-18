@@ -660,6 +660,13 @@
         <hr class="section-divider" />
         <div class="section-heading">Contact Details</div>
 
+        <!-- Name -->
+        <div class="form-group" id="fg-name">
+          <label>Your Name <span class="required">*</span></label>
+          <input type="text" id="name" placeholder="First and last name" />
+          <div class="error-msg">Please enter your name.</div>
+        </div>
+
         <!-- Email -->
         <div class="form-group" id="fg-email">
           <label>Work Email <span class="required">*</span></label>
@@ -963,6 +970,7 @@
 
     check('fg-business-name', document.getElementById('business-name').value.trim().length > 0);
     check('fg-address',       document.getElementById('address').value.trim().length > 0);
+    check('fg-name',          document.getElementById('name').value.trim().length > 0);
     check('fg-email',         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value.trim()));
     check('fg-phone',         document.getElementById('phone').value.trim().length >= 7);
 
@@ -1009,6 +1017,7 @@
         body: JSON.stringify({
           business_name:          document.getElementById('business-name').value.trim(),
           office_address:         document.getElementById('address').value.trim(),
+          contact_name:           document.getElementById('name').value.trim(),
           work_email:             document.getElementById('email').value.trim(),
           phone_number:           document.getElementById('phone').value.trim(),
           delivery_date:          dateInput.value,
