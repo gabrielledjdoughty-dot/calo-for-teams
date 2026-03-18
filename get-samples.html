@@ -613,8 +613,8 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-eyebrow">🎁 Free Sample Box — 10 Meals</div>
-      <h1>Feed your team.<br/><em>Fuel your business.</em></h1>
-      <p>Request a complimentary sample box of 10 Calo meals for your office. Taste the difference that nutritionist-designed lunches make to productivity, morale, and wellbeing.</p>
+      <h1>Try Calo for Teams —<br/><em>on us.</em></h1>
+      <p>See what your team actually thinks — with no commitment. Get your free 10 meal samples delivered straight to your office.</p>
       <div class="hero-awards">
         <div class="hero-award"><span class="star">★</span> <a href="https://www.goodhousekeeping.com/uk/food/g32474872/food-delivery-boxes/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Voted best Healthy Meal Prep Service 2026</a></div>
         <div class="hero-award"><span class="star">★</span> <a href="https://mensfitness.co.uk/review/best-meal-delivery-services/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">#1 Men's Fitness — 5/5 Nutrition</a></div>
@@ -625,10 +625,10 @@
   <!-- USP STRIP -->
   <div class="usp-strip">
     <div class="usp-strip-inner">
-      <div class="usp-pill">🏢 Brings teams into the office</div>
-      <div class="usp-pill">💪 Improves employee retention</div>
-      <div class="usp-pill">🥗 Boosts health &amp; wellbeing</div>
-      <div class="usp-pill">⚡ Eliminates lunch-hour drag</div>
+      <div class="usp-pill">🏢 Boost office attendance</div>
+      <div class="usp-pill">💪 Improve retention</div>
+      <div class="usp-pill">🥗 Healthier, happier teams</div>
+      <div class="usp-pill">⚡ Boost afternoon productivity</div>
       <div class="usp-pill">📋 Zero admin for employers</div>
     </div>
   </div>
@@ -785,18 +785,39 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
 
+      <!-- What happens next -->
+      <div class="info-card reveal">
+        <div class="info-card-label">What happens next</div>
+        <ul class="usp-list">
+          <li><div class="usp-num">1</div><div>Tell us about your team</div></li>
+          <li><div class="usp-num">2</div><div>We deliver a curated sample to your office</div></li>
+          <li><div class="usp-num">3</div><div>Your team tries it</div></li>
+          <li><div class="usp-num">4</div><div>You decide if it's right for you</div></li>
+        </ul>
+      </div>
+
+      <!-- What you'll get -->
+      <div class="info-card reveal">
+        <div class="info-card-label">What you'll get</div>
+        <ul class="usp-list">
+          <li><div class="usp-num">✓</div><div>Chef-prepared, nutritionist-designed meals</div></li>
+          <li><div class="usp-num">✓</div><div>Delivered straight to your office</div></li>
+          <li><div class="usp-num">✓</div><div>Ready to eat in minutes</div></li>
+          <li><div class="usp-num">✓</div><div>Options for all dietary preferences</div></li>
+        </ul>
+      </div>
+
       <!-- Why Calo for Teams -->
       <div class="info-card reveal">
-        <div class="info-card-label">Why Calo for Teams</div>
-        <h3>Five reasons employers across the UK are switching</h3>
+        <div class="info-card-label">Why UK employers are switching to Calo for Teams</div>
         <ul class="usp-list">
           <li>
             <div class="usp-num">1</div>
-            <div><strong>Boosts office attendance</strong> — a lunch perk employees actually come in for.</div>
+            <div><strong>Boost office attendance</strong> — a lunch perk people actually come in for.</div>
           </li>
           <li>
             <div class="usp-num">2</div>
-            <div><strong>Improves retention</strong> — show your team they're valued, every single day.</div>
+            <div><strong>Improve retention</strong> — show your team they're valued, every single day.</div>
           </li>
           <li>
             <div class="usp-num">3</div>
@@ -804,11 +825,11 @@
           </li>
           <li>
             <div class="usp-num">4</div>
-            <div><strong>Peak afternoon productivity</strong> — no lunch runs, no 3pm slump, no bandwidth drag.</div>
+            <div><strong>Boost afternoon productivity</strong> — no lunch runs, no 3pm slump, no lost momentum.</div>
           </li>
           <li>
             <div class="usp-num">5</div>
-            <div><strong>Zero employer admin</strong> — one subscription; employees self-manage with 2 days' notice to swap.</div>
+            <div><strong>Zero admin for employers</strong> — one simple setup, with employees self-managing and swapping meals with just 2 days' notice.</div>
           </li>
         </ul>
       </div>
@@ -830,7 +851,7 @@
             <div class="stat-label">Meals delivered</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num">200+</div>
+            <div class="stat-num">🇬🇧</div>
             <div class="stat-label">Delivers UK wide</div>
           </div>
         </div>
@@ -1008,7 +1029,7 @@
       return;
     }
 
-    // Send to Make → Slack
+    // Send to Make → Slack + Google Sheets
     const submitBtn  = document.getElementById('submit-btn');
     const errorBanner = document.getElementById('webhook-error');
     submitBtn.disabled = true;
@@ -1020,21 +1041,23 @@
 
     const companySize = document.querySelector('input[name="company-size"]:checked')?.value || 'Not specified';
 
+    const payload = {
+      business_name:         document.getElementById('business-name').value.trim(),
+      office_address:        document.getElementById('address').value.trim(),
+      contact_name:          document.getElementById('contact-name').value.trim(),
+      work_email:            document.getElementById('email').value.trim(),
+      phone_number:          document.getElementById('phone').value.trim(),
+      delivery_date:         dateInput.value,
+      company_size:          companySize,
+      dietary_preferences:   dietaryPrefs,
+      delivery_instructions: document.getElementById('delivery-instructions').value.trim()
+    };
+
     try {
       const res = await fetch('https://hook.eu1.make.com/krw4igl64cp8ocaql88tigai56x7s1wk', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          business_name:         document.getElementById('business-name').value.trim(),
-          office_address:        document.getElementById('address').value.trim(),
-          contact_name:          document.getElementById('contact-name').value.trim(),
-          work_email:            document.getElementById('email').value.trim(),
-          phone_number:          document.getElementById('phone').value.trim(),
-          delivery_date:         dateInput.value,
-          company_size:          companySize,
-          dietary_preferences:   dietaryPrefs,
-          delivery_instructions: document.getElementById('delivery-instructions').value.trim()
-        })
+        body: JSON.stringify(payload)
       });
       if (!res.ok) throw new Error('Non-OK response');
     } catch (err) {
@@ -1043,6 +1066,15 @@
       errorBanner.classList.add('visible');
       errorBanner.scrollIntoView({ behavior:'smooth', block:'center' });
       return;
+    }
+
+    // Write to Google Sheets
+    const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxp8wZxlNizHcFuO21THGrHDzE44LuKWKbc-uwb6qfhxDwelNsqnbzin4Vgp9aozKf_/exec';
+    try {
+      const sheetsPayload = encodeURIComponent(JSON.stringify({ type: 'samples', ...payload }));
+      await fetch(SHEETS_URL + '?data=' + sheetsPayload, { mode: 'no-cors' });
+    } catch (err) {
+      console.warn('Sheets write failed (non-blocking):', err);
     }
 
     // Show confirmation

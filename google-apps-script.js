@@ -19,10 +19,12 @@
  */
 
 // ── Sheet names ──────────────────────────────────────────────────
-var EMPLOYER_SHEET  = 'Sample Requests';
+var SAMPLES_SHEET   = 'Sample Requests';
+var EMPLOYER_SHEET  = 'Sample Requests';   // alias kept for safety
 var EMPLOYEES_SHEET = 'Employee Rosters';  // legacy bulk-submit tab
 
 // ── Column headers ───────────────────────────────────────────────
+var SAMPLES_HEADERS   = ['Timestamp', 'Business Name', 'Office Address', 'Contact Name', 'Work Email', 'Phone', 'Delivery Date', 'Company Size', 'Dietary Preferences', 'Delivery Instructions'];
 var EMPLOYER_HEADERS  = ['Timestamp', 'Business Name', 'Address', 'Delivery Instructions', 'Email', 'Phone', 'Wants Samples', 'Delivery Date', 'Diet Preferences'];
 var EMPLOYEE_HEADERS  = ['Timestamp', 'Submission ID', 'Company Name', 'Row #', 'Full Name', 'Work Email', 'Phone', 'Dietary Preference', 'Allergies', 'Delivery Days'];
 var COMPANY_HEADERS   = ['Timestamp', 'Full Name', 'Work Email', 'Phone', 'Dietary Preference', 'Allergies', 'Delivery Days'];
@@ -54,8 +56,24 @@ function handleData(data) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var ts = new Date().toISOString();
 
-  if (data.type === 'employer') {
-    // ── Sample request form ──────────────────────────────────
+  if (data.type === 'samples') {
+    // ── Sample request form (get-samples.html) ───────────────
+    var sheet = getOrCreateSheet(ss, SAMPLES_SHEET, SAMPLES_HEADERS);
+    sheet.appendRow([
+      ts,
+      data.business_name         || '',
+      data.office_address        || '',
+      data.contact_name          || '',
+      data.work_email            || '',
+      data.phone_number          || '',
+      data.delivery_date         || '',
+      data.company_size          || '',
+      data.dietary_preferences   || '',
+      data.delivery_instructions || ''
+    ]);
+
+  } else if (data.type === 'employer') {
+    // ── Legacy sample request (old field names) ──────────────
     var sheet = getOrCreateSheet(ss, EMPLOYER_SHEET, EMPLOYER_HEADERS);
     sheet.appendRow([
       ts,
