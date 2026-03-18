@@ -24,54 +24,73 @@ var EMPLOYEES_SHEET = 'Employee Rosters';
 
 // ── Column headers ───────────────────────────────────────────────
 var EMPLOYER_HEADERS  = ['Timestamp', 'Business Name', 'Address', 'Delivery Instructions', 'Email', 'Phone', 'Wants Samples', 'Delivery Date', 'Diet Preferences'];
-var EMPLOYEE_HEADERS  = ['Timestamp', 'Submission ID', 'Row #', 'Full Name', 'Work Email', 'Phone', 'Dietary Preference', 'Allergies', 'Delivery Days'];
+var EMPLOYEE_HEADERS  = ['Timestamp', 'Submission ID', 'Company Name', 'Row #', 'Full Name', 'Work Email', 'Phone', 'Dietary Preference', 'Allergies', 'Delivery Days'];
 
-function doPost(e) {
+// ── Handle GET requests (used by employee-signup.html) ───────────
+function doGet(e) {
   try {
-    var data = JSON.parse(e.postData.contents);
-    var ss   = SpreadsheetApp.getActiveSpreadsheet();
-    var ts   = new Date().toISOString();
-
-    if (data.type === 'employer') {
-      // ── Sample request form ──────────────────────────────────
-      var empSheet = getOrCreateSheet(ss, EMPLOYER_SHEET, EMPLOYER_HEADERS);
-      empSheet.appendRow([
-        ts,
-        data.businessName   || '',
-        data.address        || '',
-        data.deliveryInstructions || '',
-        data.email          || '',
-        data.phone          || '',
-        data.wantsSamples   || '',
-        data.deliveryDate   || '',
-        (data.diets || []).join(', ')
-      ]);
-
-    } else if (data.type === 'employees') {
-      // ── Employee roster form ─────────────────────────────────
-      var empSheet  = getOrCreateSheet(ss, EMPLOYEES_SHEET, EMPLOYEE_HEADERS);
-      var submissionId = ts + '-' + Math.random().toString(36).substr(2, 6).toUpperCase();
-
-      (data.employees || []).forEach(function(emp, i) {
-        empSheet.appendRow([
-          ts,
-          submissionId,
-          i + 1,
-          emp.name       || '',
-          emp.email      || '',
-          emp.phone      || '',
-          emp.diet       || '',
-          emp.allergies  || '',
-          emp.days       || ''
-        ]);
-      });
-    }
-
-    return respond({ result: 'success' });
-
+    var raw  = e.parameter.data;
+    if (!raw) return respond({ result: 'error', message: 'No data param' });
+    var data = JSON.parse(decodeURIComponent(raw));
+    return handleData(data);
   } catch (err) {
     return respond({ result: 'error', message: err.toString() });
   }
+}
+
+// ── Handle POST requests ─────────────────────────────────────────
+function doPost(e) {
+  try {
+    var data = JSON.parse(e.postData.contents);
+    return handleData(data);
+  } catch (err) {
+    return respond({ result: 'error', message: err.toString() });
+  }
+}
+
+// ── Shared logic ─────────────────────────────────────────────────
+function handleData(data) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ts = new Date().toISOString();
+
+  if (data.type === 'employer') {
+    // ── Sample request form ──────────────────────────────────
+    var sheet = getOrCreateSheet(ss, EMPLOYER_SHEET, EMPLOYER_HEADERS);
+    sheet.appendRow([
+      ts,
+      data.businessName         || '',
+      data.address              || '',
+      data.deliveryInstructions || '',
+      data.email                || '',
+      data.phone                || '',
+      data.wantsSamples         || '',
+      data.deliveryDate         || '',
+      (data.diets || []).join(', ')
+    ]);
+
+  } else if (data.type === 'employees') {
+    // ── Employee roster form ─────────────────────────────────
+    var sheet        = getOrCreateSheet(ss, EMPLOYEES_SHEET, EMPLOYEE_HEADERS);
+    var companyName  = data.company_name || '';
+    var submissionId = ts + '-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+
+    (data.employees || []).forEach(function(emp, i) {
+      sheet.appendRow([
+        ts,
+        submissionId,
+        companyName,
+        i + 1,
+        emp.name      || '',
+        emp.email     || '',
+        emp.phone     || '',
+        emp.diet      || '',
+        emp.allergies || '',
+        emp.days      || ''
+      ]);
+    });
+  }
+
+  return respond({ result: 'success' });
 }
 
 // ── Helpers ──────────────────────────────────────────────────────
