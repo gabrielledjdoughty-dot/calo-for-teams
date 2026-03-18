@@ -20,11 +20,12 @@
 
 // ── Sheet names ──────────────────────────────────────────────────
 var EMPLOYER_SHEET  = 'Sample Requests';
-var EMPLOYEES_SHEET = 'Employee Rosters';
+var EMPLOYEES_SHEET = 'Employee Rosters';  // legacy bulk-submit tab
 
 // ── Column headers ───────────────────────────────────────────────
 var EMPLOYER_HEADERS  = ['Timestamp', 'Business Name', 'Address', 'Delivery Instructions', 'Email', 'Phone', 'Wants Samples', 'Delivery Date', 'Diet Preferences'];
 var EMPLOYEE_HEADERS  = ['Timestamp', 'Submission ID', 'Company Name', 'Row #', 'Full Name', 'Work Email', 'Phone', 'Dietary Preference', 'Allergies', 'Delivery Days'];
+var COMPANY_HEADERS   = ['Timestamp', 'Full Name', 'Work Email', 'Phone', 'Dietary Preference', 'Allergies', 'Delivery Days'];
 
 // ── Handle GET requests (used by employee-signup.html) ───────────
 function doGet(e) {
@@ -68,8 +69,24 @@ function handleData(data) {
       (data.diets || []).join(', ')
     ]);
 
+  } else if (data.type === 'employee') {
+    // ── Individual employee self-registration ────────────────
+    // Route into a company-specific tab named after the company
+    var companyName = (data.company_name || 'Unknown Company').toString().trim();
+    var tabName     = sanitiseTabName(companyName);
+    var sheet       = getOrCreateSheet(ss, tabName, COMPANY_HEADERS);
+    sheet.appendRow([
+      ts,
+      data.name      || '',
+      data.email     || '',
+      data.phone     || '',
+      data.diet      || '',
+      data.allergies || '',
+      data.days      || ''
+    ]);
+
   } else if (data.type === 'employees') {
-    // ── Employee roster form ─────────────────────────────────
+    // ── Legacy bulk-submit (admin adds all rows at once) ─────
     var sheet        = getOrCreateSheet(ss, EMPLOYEES_SHEET, EMPLOYEE_HEADERS);
     var companyName  = data.company_name || '';
     var submissionId = ts + '-' + Math.random().toString(36).substr(2, 6).toUpperCase();
@@ -94,6 +111,11 @@ function handleData(data) {
 }
 
 // ── Helpers ──────────────────────────────────────────────────────
+
+function sanitiseTabName(name) {
+  // Google Sheets tab names: max 100 chars, no [ ] * ? / \
+  return name.replace(/[\[\]\*\?\/\\]/g, '').substring(0, 100).trim() || 'Unknown Company';
+}
 
 function getOrCreateSheet(ss, name, headers) {
   var sheet = ss.getSheetByName(name);
