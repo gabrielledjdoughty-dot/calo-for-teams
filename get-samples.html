@@ -222,7 +222,7 @@
     }
     @media (max-width: 920px) {
       .main { grid-template-columns: 1fr; }
-      .sidebar { order: -1; }
+      .sidebar { order: 1; }
     }
 
     /* ── FORM CARD ── */
@@ -675,6 +675,16 @@
         </div>
 
         <hr class="section-divider" />
+
+        <!-- Delivery Date -->
+        <div class="form-group" id="fg-date">
+          <label>Preferred Delivery Date <span class="required">*</span></label>
+          <input type="date" id="delivery-date" />
+          <div class="hint">Monday–Friday only · At least 3 working days from today</div>
+          <div class="error-msg" id="date-error-msg">Please select a valid weekday at least 3 working days from today.</div>
+        </div>
+
+        <hr class="section-divider" />
         <div class="section-heading">Company Size</div>
 
         <!-- Company Size -->
@@ -704,14 +714,6 @@
           <div class="error-msg">Please select your company size.</div>
         </div>
 
-        <!-- Delivery Date -->
-        <div class="form-group" id="fg-date">
-          <label>Preferred Delivery Date <span class="required">*</span></label>
-          <input type="date" id="delivery-date" />
-          <div class="hint">Monday–Friday only · At least 3 working days from today</div>
-          <div class="error-msg" id="date-error-msg">Please select a valid weekday at least 3 working days from today.</div>
-        </div>
-
         <hr class="section-divider" />
         <div class="section-heading">Dietary Preferences</div>
         <p style="font-size:13px; color:var(--gray); margin-bottom:16px; line-height:1.5;">All preferences below are fully supported. Tick any that apply for your team.</p>
@@ -721,37 +723,37 @@
             <label class="diet-option">
               <input type="checkbox" name="diet" value="no-preference" />
               <span class="diet-check"></span>
-              <span>No preference / all meals</span>
+              <span>✅</span><span>No preference / all meals</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="vegetarian" />
               <span class="diet-check"></span>
-              <span>Vegetarian</span>
+              <span>🥦</span><span>Vegetarian</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="vegan" />
               <span class="diet-check"></span>
-              <span>Vegan</span>
+              <span>🌱</span><span>Vegan</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="high-protein" />
               <span class="diet-check"></span>
-              <span>High Protein</span>
+              <span>💪</span><span>High Protein</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="pescatarian" />
               <span class="diet-check"></span>
-              <span>Pescatarian</span>
+              <span>🐟</span><span>Pescatarian</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="halal" />
               <span class="diet-check"></span>
-              <span>Halal</span>
+              <span>☪️</span><span>Halal</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="gluten-free" />
               <span class="diet-check"></span>
-              <span>Gluten Free</span>
+              <span>🌾</span><span>Gluten Free</span>
             </label>
           </div>
         </div>
