@@ -1,0 +1,7 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/get-samples", "destination": "/get-samples.html" },
+    { "source": "/employee-signup", "destination": "/employee-signup.html" }
+  ]
+}
