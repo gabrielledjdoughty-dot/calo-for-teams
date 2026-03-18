@@ -294,45 +294,6 @@
       font-size: 22px; font-weight: 300; line-height: 1; flex-shrink: 0;
     }
 
-    /* ── FORM CARD ── */
-    .form-card {
-      background: white; border-radius: 24px;
-      box-shadow: 0 4px 28px rgba(16,75,52,0.08);
-      border: 1px solid var(--border);
-      padding: 36px 40px; max-width: 620px; margin: 0 auto;
-    }
-    @media (max-width: 600px) { .form-card { padding: 24px 20px; } }
-
-    .form-section-heading {
-      font-size: 11px; font-weight: 900; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--gray); margin-bottom: 16px;
-    }
-    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
-    .form-group label {
-      font-size: 13px; font-weight: 700; color: var(--text);
-    }
-    .form-group input, .form-group select, .form-group textarea {
-      padding: 13px 16px; border: 1.5px solid var(--border); border-radius: 12px;
-      font-family: 'Lato', sans-serif; font-size: 15px; color: var(--text);
-      background: white; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
-      width: 100%;
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      border-color: var(--green); box-shadow: 0 0 0 3px rgba(56,182,117,0.14);
-    }
-    .form-group input.has-error, .form-group select.has-error { border-color: var(--error); }
-    .form-group select { cursor: pointer; }
-    .form-group .hint { font-size: 12px; color: var(--gray); }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
-    .req { color: var(--error); }
-    .form-divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
-
-    .day-picker-standalone { margin-bottom: 24px; }
-    .day-picker-standalone .day-picker-label {
-      font-size: 13px; font-weight: 700; color: var(--text); display: block; margin-bottom: 10px;
-    }
-
     /* ── SUBMIT SECTION ── */
     .submit-section { margin-top: 36px; text-align: center; }
 
@@ -454,99 +415,133 @@
   </div>
 </section>
 
-<!-- AWARDS STRIP -->
+<!-- USP BOXES -->
+<div class="usp-section">
+  <div class="usp-boxes">
+    <div class="usp-box">
+      <span class="emoji">🏢</span>
+      <h3>Your Lunchtime Reason to Come In</h3>
+      <p>A fresh, healthy meal waiting at the office every day.</p>
+    </div>
+    <div class="usp-box">
+      <span class="emoji">🤝</span>
+      <h3>A Perk That Shows You're Valued</h3>
+      <p>Your employer is investing in your daily wellbeing — not just your salary.</p>
+    </div>
+    <div class="usp-box">
+      <span class="emoji">🥗</span>
+      <h3>Genuinely Good for Your Health</h3>
+      <p>Nutritionist-designed, calorie-balanced meals that actually taste great.</p>
+    </div>
+    <div class="usp-box">
+      <span class="emoji">⚡</span>
+      <h3>No Lunch Run. No Decision Fatigue.</h3>
+      <p>Zero queues, zero ordering — just more focused, energised afternoons.</p>
+    </div>
+    <div class="usp-box">
+      <span class="emoji">🔄</span>
+      <h3>Flexible — Swap with 2 Days' Notice</h3>
+      <p>Change your meal with just 2 working days' notice. You're always in control.</p>
+    </div>
+  </div>
+</div>
+
+<!-- AWARDS -->
 <div class="awards-strip">
   <div class="awards-inner">
     <div class="award"><span class="star">★</span> <a href="https://www.goodhousekeeping.com/uk/food/g32474872/food-delivery-boxes/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">#1 Best Healthy Meal Delivery — Good Housekeeping 2026</a></div>
     <div class="award"><span class="star">★</span> <a href="https://mensfitness.co.uk/review/best-meal-delivery-services/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">#1 Overall — Men's Fitness, 5/5 for Nutrition</a></div>
-    <div class="award">🌱 1 Million+ Meals Delivered</div>
+<div class="award">🌱 1 Million+ Meals Delivered</div>
   </div>
 </div>
 
+<!-- GOLDMAN SACHS QUOTE BANNER -->
+<div style="background:white; border-bottom:1px solid var(--border); padding:28px 28px;">
+  <div style="max-width:900px; margin:0 auto; display:flex; align-items:center; gap:28px; flex-wrap:wrap;">
+    <div style="font-size:40px; color:var(--green); font-family:Georgia,serif; line-height:1; flex-shrink:0;">"</div>
+    <div style="flex:1; min-width:260px;">
+      <p style="font-size:16px; font-style:italic; color:#3d4f42; line-height:1.7; margin-bottom:10px;">The macronutrients and calories are bespoke to me, detailed each day — it gives me confidence that I'm being fuelled correctly. Delivered to my workplace.</p>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:34px; height:34px; border-radius:50%; background:var(--green-dark); display:flex; align-items:center; justify-content:center; color:white; font-weight:900; font-size:13px; flex-shrink:0;">G</div>
+        <div>
+          <div style="font-size:13px; font-weight:700; color:var(--green-dark);">Graham</div>
+          <div style="font-size:12px; color:var(--gray);">Goldman Sachs</div>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--green-light); border:1.5px solid var(--border); border-radius:14px; padding:16px 20px; text-align:center; flex-shrink:0;">
+      <div style="font-size:11px; font-weight:900; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); margin-bottom:6px;">Fully biodegradable</div>
+      <div style="font-size:22px; margin-bottom:4px;">🌿</div>
+      <div style="font-size:12px; color:var(--green-dark); font-weight:700; line-height:1.4;">Every meal arrives in<br/>compostable packaging</div>
+    </div>
+  </div>
+</div>
 
 <!-- MAIN CONTENT -->
 <div class="main-wrapper">
 
-  <!-- FORM CARD -->
-  <div class="form-card reveal" id="form-section">
-
-    <div class="form-section-heading">Your Company</div>
-    <div class="form-group">
-      <label for="company-name">Company Name <span class="req">*</span></label>
-      <input type="text" id="company-name" placeholder="e.g. Acme Ltd" />
+  <div class="section-intro reveal">
+    <div class="section-intro-text">
+      <h2>Team Meal Registration</h2>
+      <p>Add each team member below. Share this page with colleagues and let everyone fill in their own row — or fill it in yourself. Hit <strong>Submit</strong> when everyone's added to start your standing weekly order.</p>
     </div>
-
-    <hr class="form-divider" />
-
-    <div class="form-section-heading">Your Details</div>
-    <div class="form-group">
-      <label for="full-name">Full Name <span class="req">*</span></label>
-      <input type="text" id="full-name" placeholder="Jane Smith" />
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="work-email">Work Email <span class="req">*</span></label>
-        <input type="email" id="work-email" placeholder="jane@company.com" />
-      </div>
-      <div class="form-group">
-        <label for="phone">Phone</label>
-        <input type="tel" id="phone" placeholder="+44 7700 000000" />
+    <div class="count-badge">
+      <span class="count-badge-icon">👥</span>
+      <div>
+        <div class="count-badge-num" id="row-count-display">1</div>
+        <div class="count-badge-label">Team members</div>
       </div>
     </div>
+  </div>
 
-    <hr class="form-divider" />
+  <!-- COMPANY NAME -->
+  <div class="reveal" style="margin-bottom:20px;">
+    <label style="display:block;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:8px;">Company Name <span style="color:#e53e3e;">*</span></label>
+    <input type="text" id="company-name" placeholder="e.g. Acme Ltd"
+      style="width:100%;max-width:420px;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;font-family:inherit;color:var(--green-dark);background:white;box-sizing:border-box;outline:none;transition:border-color 0.2s;" />
+  </div>
 
-    <div class="form-section-heading">Dietary Preference</div>
-    <div class="form-group">
-      <label for="diet-select">Select your preference <span class="req">*</span></label>
-      <select id="diet-select">
-        <option value="" disabled selected>Choose one…</option>
-        <option value="no-preference">No preference / Omnivore</option>
-        <option value="vegetarian">🥦 Vegetarian</option>
-        <option value="vegan">🌱 Vegan</option>
-        <option value="high-protein">💪 High Protein</option>
-        <option value="pescatarian">🐟 Pescatarian</option>
-        <option value="halal">☪️ Halal</option>
-        <option value="gluten-free">🌾 Gluten Free</option>
-      </select>
+  <!-- TABLE CARD -->
+  <div class="table-card reveal">
+    <div class="table-head">
+      <div class="th center">#</div>
+      <div class="th">Full Name</div>
+      <div class="th">Work Email</div>
+      <div class="th">Phone</div>
+      <div class="th">Dietary Preference</div>
+      <div class="th">Severe Allergies</div>
+      <div class="th center">Del</div>
     </div>
-    <div class="form-group">
-      <label for="allergies">Severe Allergies</label>
-      <input type="text" id="allergies" placeholder="e.g. Nuts, Shellfish (leave blank if none)" />
+    <div id="rows-container"></div>
+    <div class="add-row-wrapper">
+      <button class="add-row-btn" id="add-row-btn" type="button">
+        <span class="plus">+</span>
+        Add another team member
+      </button>
     </div>
+  </div>
 
-    <hr class="form-divider" />
-
-    <div class="day-picker-standalone">
-      <span class="day-picker-label">Delivery Days <span class="req">*</span></span>
-      <div class="hint" style="font-size:12px;color:var(--gray);margin-bottom:10px;">Toggle the days you're in the office</div>
-      <div class="day-btns" id="day-btns">
-        <button type="button" class="day-btn active" data-day="Mon">M</button>
-        <button type="button" class="day-btn active" data-day="Tue">T</button>
-        <button type="button" class="day-btn active" data-day="Wed">W</button>
-        <button type="button" class="day-btn active" data-day="Thu">T</button>
-        <button type="button" class="day-btn active" data-day="Fri">F</button>
-      </div>
-    </div>
-
-    <div class="countdown-notice" style="margin-bottom:24px;">
+  <!-- SUBMIT -->
+  <div class="submit-section reveal" id="submit-section">
+    <div class="countdown-notice">
       <span class="countdown-icon">🔄</span>
-      <p><strong>This sets up your recurring order</strong> — healthy workplace meals, week after week.<br/>
-      <span class="countdown-accent">The sooner you register, the sooner the meals begin!</span></p>
+      <p><strong>This sets up a recurring order</strong> — healthy workplace meals, week after week.<br/>
+      Your programme can start <strong>1+ week from the date of submission.</strong>
+      <span class="countdown-accent"> The sooner you submit, the sooner the meals begin!</span></p>
     </div>
-
-    <button class="btn-primary" id="submit-btn" type="button" style="width:100%;">Register for Meals →</button>
+    <button class="btn-primary" id="submit-roster-btn" type="button">Submit →</button>
+    <p class="submit-sub">Setting up weekly meals for <strong id="submit-count">1</strong> team member(s)</p>
   </div>
 
   <!-- CONFIRMATION -->
   <div id="roster-confirmation">
     <span class="confirm-icon-large">🎉</span>
-    <h2>You're registered!</h2>
-    <p>Welcome to Calo for Teams. Your details have been submitted and our team will be in touch to confirm your programme. Get ready for fresh, healthy lunches.</p>
-    <p style="font-size:14px;">Voted <strong style="color:var(--green-dark)">Best Healthy Meal Delivery in the UK</strong> — and now it's your turn to find out why.</p>
+    <h2>Your team is registered!</h2>
+    <p>Welcome to Calo for Teams. Your roster has been submitted and our team will be in touch to confirm your programme details. Get ready for fresh, healthy lunches your team will love.</p>
+    <p style="font-size:14px;">Voted <strong style="color:var(--green-dark)">Best Healthy Meal Delivery in the UK</strong> — and now your team gets to find out why.</p>
     <div class="start-date-box">
       <span>🚀</span>
-      <span>Your meals can start from <strong id="programme-start-date">—</strong></span>
+      <span>Your programme can start from <strong id="programme-start-date">—</strong></span>
     </div>
     <p style="margin-top:24px; font-size:13px; color:var(--gray);">Check your inbox — we'll be in touch within 1 working day.</p>
   </div>
@@ -563,87 +558,20 @@
 
 
 <script>
-  // ── Day picker toggles ────────────────────────────────────────
-  document.querySelectorAll('#day-btns .day-btn').forEach(btn => {
-    btn.addEventListener('click', () => btn.classList.toggle('active'));
-  });
+  const DIET_OPTIONS = [
+    { value: '',              label: 'Select preference…',   disabled: true },
+    { value: 'no-preference', label: 'No preference / Omnivore' },
+    { value: 'vegetarian',    label: '🥦 Vegetarian' },
+    { value: 'vegan',         label: '🌱 Vegan' },
+    { value: 'high-protein',  label: '💪 High Protein' },
+    { value: 'pescatarian',   label: '🐟 Pescatarian' },
+    { value: 'halal',         label: '☪️ Halal' },
+    { value: 'gluten-free',   label: '🌾 Gluten Free' },
+  ];
 
-  // ── Helpers ───────────────────────────────────────────────────
-  function addWeeks(date, weeks) {
-    const d = new Date(date);
-    d.setDate(d.getDate() + weeks * 7);
-    while (d.getDay() === 0 || d.getDay() === 6) d.setDate(d.getDate() + 1);
-    return d;
-  }
-  function formatDate(date) {
-    return date.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
-  }
+  let rowCount = 0;
 
-  // ── Submit ────────────────────────────────────────────────────
-  const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxp8wZxlNizHcFuO21THGrHDzE44LuKWKbc-uwb6qfhxDwelNsqnbzin4Vgp9aozKf_/exec';
-
-  document.getElementById('submit-btn').addEventListener('click', async function() {
-    // Clear errors
-    ['company-name','full-name','work-email','diet-select'].forEach(id => {
-      document.getElementById(id).classList.remove('has-error');
-    });
-
-    const companyName = document.getElementById('company-name').value.trim();
-    const fullName    = document.getElementById('full-name').value.trim();
-    const workEmail   = document.getElementById('work-email').value.trim();
-    const phone       = document.getElementById('phone').value.trim();
-    const diet        = document.getElementById('diet-select').value;
-    const allergies   = document.getElementById('allergies').value.trim();
-    const selectedDays = Array.from(document.querySelectorAll('#day-btns .day-btn.active'))
-                              .map(b => b.dataset.day).join(', ');
-
-    let valid = true;
-    if (!companyName) { document.getElementById('company-name').classList.add('has-error'); valid = false; }
-    if (!fullName)    { document.getElementById('full-name').classList.add('has-error');    valid = false; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(workEmail)) { document.getElementById('work-email').classList.add('has-error'); valid = false; }
-    if (!diet)        { document.getElementById('diet-select').classList.add('has-error');  valid = false; }
-
-    if (!valid) {
-      document.querySelector('.has-error').scrollIntoView({ behavior:'smooth', block:'center' });
-      return;
-    }
-
-    const btn = document.getElementById('submit-btn');
-    btn.textContent = 'Registering…';
-    btn.disabled = true;
-
-    try {
-      const payload = encodeURIComponent(JSON.stringify({
-        type:         'employee',
-        company_name: companyName,
-        name:         fullName,
-        email:        workEmail,
-        phone:        phone,
-        diet:         diet,
-        allergies:    allergies,
-        days:         selectedDays
-      }));
-      await fetch(SHEETS_URL + '?data=' + payload, { mode: 'no-cors' });
-    } catch (err) {
-      console.warn('Sheets submission failed:', err);
-    }
-
-    // Show confirmation
-    document.getElementById('programme-start-date').textContent = formatDate(addWeeks(new Date(), 1));
-    document.getElementById('form-section').style.display = 'none';
-    document.getElementById('roster-confirmation').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // ── Scroll reveal ─────────────────────────────────────────────
-  const observer = new IntersectionObserver(
-    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.08 }
-  );
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // ── (legacy table functions removed) ─────────────────────────
-  function createRow_UNUSED(num) {
+  function createRow(num) {
     const row = document.createElement('div');
     row.className = 'employee-row';
     row.dataset.rowId = ++rowCount;
@@ -875,7 +803,21 @@
       }
     }
 
-  }
+    // Show confirmation
+    document.getElementById('programme-start-date').textContent = formatDate(addWeeks(new Date(), 1));
+    document.querySelector('.table-card').style.display     = 'none';
+    document.getElementById('submit-section').style.display = 'none';
+    document.querySelector('.section-intro').style.display  = 'none';
+    document.getElementById('roster-confirmation').style.display = 'block';
+    window.scrollTo({ top: 0, behavior:'smooth' });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
