@@ -339,32 +339,16 @@
       margin-bottom: 16px;
     }
 
-    /* Toggle */
-    .toggle-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--green-light);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 15px 18px;
-      gap: 12px;
+    /* Company size grid */
+    .size-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    /* Form error banner */
+    .form-error-banner {
+      display: none; background: #fef2f2; border: 1.5px solid #fca5a5;
+      border-radius: 10px; padding: 14px 16px; margin-bottom: 16px;
+      font-size: 14px; color: #b91c1c; line-height: 1.5;
     }
-    .toggle-label { font-size: 15px; font-weight: 700; color: var(--green-dark); }
-    .toggle-switch { position: relative; width: 52px; height: 28px; flex-shrink: 0; }
-    .toggle-switch input { opacity: 0; width: 0; height: 0; }
-    .toggle-track {
-      position: absolute; inset: 0;
-      background: #c8d5cc; border-radius: 100px; cursor: pointer; transition: background 0.25s;
-    }
-    .toggle-track::after {
-      content: ''; position: absolute;
-      width: 20px; height: 20px; background: white; border-radius: 50%;
-      top: 4px; left: 4px; transition: transform 0.25s;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    }
-    .toggle-switch input:checked + .toggle-track { background: var(--green); }
-    .toggle-switch input:checked + .toggle-track::after { transform: translateX(24px); }
+    .form-error-banner.visible { display: block; }
 
     /* Diet grid */
     .diet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -376,7 +360,8 @@
       font-size: 14px; font-weight: 600; color: #4a5568;
     }
     .diet-option:hover { border-color: var(--green); background: rgba(56,182,117,0.04); }
-    .diet-option input[type="checkbox"] { display: none; }
+    .diet-option input[type="checkbox"],
+    .diet-option input[type="radio"] { display: none; }
     .diet-check {
       width: 18px; height: 18px;
       border: 2px solid var(--border); border-radius: 5px; flex-shrink: 0;
@@ -659,18 +644,6 @@
           <div class="error-msg">Please enter your business name.</div>
         </div>
 
-        <!-- Logo Upload -->
-        <div class="form-group">
-          <label>Business Logo <span class="label-opt">(optional)</span></label>
-          <div class="upload-area" id="upload-area">
-            <input type="file" id="logo-input" accept="image/*" />
-            <div class="upload-icon">📷</div>
-            <p><strong>Click to upload</strong> or drag and drop</p>
-            <p style="font-size:12px; margin-top:4px; color:#9aaba1;">PNG, JPG, SVG — up to 5MB</p>
-          </div>
-          <div id="logo-preview"><img id="logo-img" src="" alt="Logo preview" /></div>
-        </div>
-
         <!-- Address -->
         <div class="form-group" id="fg-address">
           <label>Office Address <span class="required">*</span></label>
@@ -702,22 +675,37 @@
         </div>
 
         <hr class="section-divider" />
-        <div class="section-heading">Sample Box</div>
+        <div class="section-heading">Company Size</div>
 
-        <!-- Toggle -->
-        <div class="form-group">
-          <label>Would you like a sample box?</label>
-          <div class="toggle-row">
-            <span class="toggle-label" id="toggle-label-text">Yes — send me a box of 10 meals 🎉</span>
-            <label class="toggle-switch">
-              <input type="checkbox" id="samples-toggle" checked />
-              <span class="toggle-track"></span>
+        <!-- Company Size -->
+        <div class="form-group" id="fg-company-size">
+          <div class="size-grid">
+            <label class="diet-option">
+              <input type="radio" name="company-size" value="0-10" />
+              <span class="diet-check"></span>
+              <span>0–10 employees</span>
+            </label>
+            <label class="diet-option">
+              <input type="radio" name="company-size" value="10-50" />
+              <span class="diet-check"></span>
+              <span>10–50 employees</span>
+            </label>
+            <label class="diet-option">
+              <input type="radio" name="company-size" value="50-200" />
+              <span class="diet-check"></span>
+              <span>50–200 employees</span>
+            </label>
+            <label class="diet-option">
+              <input type="radio" name="company-size" value="200+" />
+              <span class="diet-check"></span>
+              <span>200+ employees</span>
             </label>
           </div>
+          <div class="error-msg">Please select your company size.</div>
         </div>
 
         <!-- Delivery Date -->
-        <div class="form-group" id="fg-date" style="display:block">
+        <div class="form-group" id="fg-date">
           <label>Preferred Delivery Date <span class="required">*</span></label>
           <input type="date" id="delivery-date" />
           <div class="hint">Monday–Friday only · At least 3 working days from today</div>
@@ -726,44 +714,52 @@
 
         <hr class="section-divider" />
         <div class="section-heading">Dietary Preferences</div>
-        <p style="font-size:13px; color:var(--gray); margin-bottom:16px; line-height:1.5;">We'll do our best to cater — tick all that apply for your team.</p>
+        <p style="font-size:13px; color:var(--gray); margin-bottom:16px; line-height:1.5;">All preferences below are fully supported. Tick any that apply for your team.</p>
 
         <div class="form-group">
           <div class="diet-grid">
             <label class="diet-option">
+              <input type="checkbox" name="diet" value="no-preference" />
+              <span class="diet-check"></span>
+              <span>No preference / all meals</span>
+            </label>
+            <label class="diet-option">
               <input type="checkbox" name="diet" value="vegetarian" />
               <span class="diet-check"></span>
-              <span>🥦</span><span>Vegetarian</span>
+              <span>Vegetarian</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="vegan" />
               <span class="diet-check"></span>
-              <span>🌱</span><span>Vegan</span>
+              <span>Vegan</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="high-protein" />
               <span class="diet-check"></span>
-              <span>💪</span><span>High Protein</span>
+              <span>High Protein</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="pescatarian" />
               <span class="diet-check"></span>
-              <span>🐟</span><span>Pescatarian</span>
+              <span>Pescatarian</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="halal" />
               <span class="diet-check"></span>
-              <span>☪️</span><span>Halal</span>
+              <span>Halal</span>
             </label>
             <label class="diet-option">
               <input type="checkbox" name="diet" value="gluten-free" />
               <span class="diet-check"></span>
-              <span>🌾</span><span>Gluten Free</span>
+              <span>Gluten Free</span>
             </label>
           </div>
         </div>
 
-        <button type="submit" class="btn-primary">Submit for Samples →</button>
+        <div class="form-error-banner" id="webhook-error">
+          Something went wrong sending your request — please try again or email us directly at <a href="mailto:teams@calo.app" style="color:inherit;font-weight:700;">teams@calo.app</a>.
+        </div>
+        <button type="submit" class="btn-primary" id="submit-btn">Submit for Samples →</button>
         <p class="form-footer">🔒 Your information is kept private and secure. No spam, ever.</p>
 
       </form>
@@ -952,33 +948,8 @@
     }
   });
 
-  // Logo preview
-  document.getElementById('logo-input').addEventListener('change', function() {
-    if (!this.files[0]) return;
-    const reader = new FileReader();
-    reader.onload = e => {
-      document.getElementById('logo-img').src = e.target.result;
-      document.getElementById('logo-preview').style.display = 'block';
-    };
-    reader.readAsDataURL(this.files[0]);
-  });
-
-  // Toggle
-  const samplesToggle  = document.getElementById('samples-toggle');
-  const toggleLabelTxt = document.getElementById('toggle-label-text');
-  const dateGroup      = document.getElementById('fg-date');
-  samplesToggle.addEventListener('change', function() {
-    if (this.checked) {
-      toggleLabelTxt.textContent = 'Yes — send me a box of 10 meals 🎉';
-      dateGroup.style.display = 'block';
-    } else {
-      toggleLabelTxt.textContent = 'No thanks, not right now';
-      dateGroup.style.display = 'none';
-    }
-  });
-
   // Form submit
-  document.getElementById('sample-form').addEventListener('submit', function(e) {
+  document.getElementById('sample-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     let valid = true;
 
@@ -993,19 +964,24 @@
     check('fg-email',         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value.trim()));
     check('fg-phone',         document.getElementById('phone').value.trim().length >= 7);
 
-    if (samplesToggle.checked) {
-      const dv = dateInput.value;
-      const ok = dv && isWeekday(dv) && dv >= toYYYYMMDD(minDate);
-      const fg = document.getElementById('fg-date');
-      if (!ok) {
-        fg.classList.add('has-error');
-        document.getElementById('date-error-msg').textContent = dv && !isWeekday(dv)
-          ? 'Please choose a Monday–Friday date.'
-          : 'Please select a date at least 3 working days from today.';
-        valid = false;
-      } else {
-        fg.classList.remove('has-error');
-      }
+    // Validate company size
+    const selectedSize = document.querySelector('input[name="company-size"]:checked');
+    const fgSize = document.getElementById('fg-company-size');
+    if (!selectedSize) { fgSize.classList.add('has-error'); valid = false; }
+    else               { fgSize.classList.remove('has-error'); }
+
+    // Validate delivery date
+    const dv = dateInput.value;
+    const dateOk = dv && isWeekday(dv) && dv >= toYYYYMMDD(minDate);
+    const fgDate = document.getElementById('fg-date');
+    if (!dateOk) {
+      fgDate.classList.add('has-error');
+      document.getElementById('date-error-msg').textContent = dv && !isWeekday(dv)
+        ? 'Please choose a Monday–Friday date.'
+        : 'Please select a date at least 3 working days from today.';
+      valid = false;
+    } else {
+      fgDate.classList.remove('has-error');
     }
 
     if (!valid) {
@@ -1015,27 +991,42 @@
     }
 
     // Send to Make → Slack
+    const submitBtn  = document.getElementById('submit-btn');
+    const errorBanner = document.getElementById('webhook-error');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    errorBanner.classList.remove('visible');
+
     const dietaryPrefs = [...document.querySelectorAll('input[name="diet"]:checked')]
       .map(cb => cb.value).join(', ') || 'None selected';
-    fetch('https://hook.eu1.make.com/krw4igl64cp8ocaql88tigai56x7s1wk', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        business_name:          document.getElementById('business-name').value.trim(),
-        office_address:         document.getElementById('address').value.trim(),
-        work_email:             document.getElementById('email').value.trim(),
-        phone_number:           document.getElementById('phone').value.trim(),
-        delivery_date:          dateInput.value,
-        dietary_preferences:    dietaryPrefs,
-        delivery_instructions:  document.getElementById('delivery-instructions').value.trim(),
-        wants_sample_box:       samplesToggle.checked ? 'Yes' : 'No'
-      })
-    });
+
+    try {
+      const res = await fetch('https://hook.eu1.make.com/krw4igl64cp8ocaql88tigai56x7s1wk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          business_name:          document.getElementById('business-name').value.trim(),
+          office_address:         document.getElementById('address').value.trim(),
+          work_email:             document.getElementById('email').value.trim(),
+          phone_number:           document.getElementById('phone').value.trim(),
+          delivery_date:          dateInput.value,
+          dietary_preferences:    dietaryPrefs,
+          delivery_instructions:  document.getElementById('delivery-instructions').value.trim(),
+          company_size:           selectedSize.value
+        })
+      });
+      if (!res.ok) throw new Error('Non-OK response');
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit for Samples →';
+      errorBanner.classList.add('visible');
+      errorBanner.scrollIntoView({ behavior:'smooth', block:'center' });
+      return;
+    }
 
     // Show confirmation
-    const dateStr = dateInput.value;
     document.getElementById('confirm-date-display').textContent =
-      dateStr ? formatDateNice(dateStr) : 'your chosen date';
+      dateInput.value ? formatDateNice(dateInput.value) : 'your chosen date';
 
     document.getElementById('form-page').style.display = 'none';
     document.getElementById('confirmation-page').style.display = 'block';
