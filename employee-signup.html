@@ -494,6 +494,13 @@
     </div>
   </div>
 
+  <!-- COMPANY NAME -->
+  <div class="reveal" style="margin-bottom:20px;">
+    <label style="display:block;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:8px;">Company Name <span style="color:#e53e3e;">*</span></label>
+    <input type="text" id="company-name" placeholder="e.g. Acme Ltd"
+      style="width:100%;max-width:420px;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;font-family:inherit;color:var(--green-dark);background:white;box-sizing:border-box;outline:none;transition:border-color 0.2s;" />
+  </div>
+
   <!-- TABLE CARD -->
   <div class="table-card reveal">
     <div class="table-head">
@@ -727,8 +734,19 @@
 
   // Submit
   document.getElementById('submit-roster-btn').addEventListener('click', async function() {
+    const companyNameInput = document.getElementById('company-name');
+    const companyName = companyNameInput.value.trim();
+    companyNameInput.style.borderColor = 'var(--border)';
+
     const rows = document.querySelectorAll('#rows-container .employee-row');
     let valid = true;
+
+    if (!companyName) {
+      companyNameInput.style.borderColor = '#e53e3e';
+      companyNameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      companyNameInput.focus();
+      valid = false;
+    }
 
     rows.forEach(row => {
       const inputs = row.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
@@ -778,7 +796,7 @@
     // POST to Google Sheets (skip if URL not yet configured)
     if (SHEETS_URL && SHEETS_URL !== 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
       try {
-        const payload = encodeURIComponent(JSON.stringify({ type: 'employees', employees }));
+        const payload = encodeURIComponent(JSON.stringify({ type: 'employees', company_name: companyName, employees }));
         await fetch(SHEETS_URL + '?data=' + payload, { mode: 'no-cors' });
       } catch (err) {
         console.warn('Sheets submission failed:', err);
