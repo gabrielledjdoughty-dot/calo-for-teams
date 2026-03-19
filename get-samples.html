@@ -89,31 +89,33 @@
 
     /* ── HERO ── */
     .hero {
-      background: white;
-      border-bottom: 1px solid var(--border);
-      padding: 44px 28px 52px;
+      background-image: url('/hero-bg.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      padding: 72px 28px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 440px;
     }
-    /* Subtle decorative tint */
-    .hero::before, .hero::after {
-      content: '';
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.96);
+      border-radius: 20px;
+      padding: 44px 48px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.22);
     }
-    .hero::before {
-      width: 600px; height: 600px;
-      top: -200px; right: -120px;
-      background: radial-gradient(circle, rgba(56,182,117,0.06) 0%, transparent 70%);
+    @media (max-width: 600px) {
+      .hero { padding: 40px 16px; min-height: unset; }
+      .hero-inner { padding: 32px 24px; border-radius: 16px; }
     }
-    .hero::after {
-      width: 400px; height: 400px;
-      bottom: -150px; left: -80px;
-      background: radial-gradient(circle, rgba(56,182,117,0.05) 0%, transparent 70%);
-    }
-    .hero-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
