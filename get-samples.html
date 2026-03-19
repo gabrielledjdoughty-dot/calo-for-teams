@@ -229,7 +229,6 @@
     @media (max-width: 920px) {
       .main { grid-template-columns: 1fr; }
       .sidebar { order: 1; display: flex; flex-direction: column; }
-      .stat-card { order: -1; }
     }
 
     /* ── FORM CARD ── */
@@ -789,6 +788,29 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
 
+      <!-- Stats -->
+      <div class="stat-card reveal">
+        <div class="stat-card-label">The Numbers</div>
+        <div class="stat-grid">
+          <div class="stat-item">
+            <div class="stat-num">10k+</div>
+            <div class="stat-label">Happy customers</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">10</div>
+            <div class="stat-label">Meals in your sample box</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">1M+</div>
+            <div class="stat-label">Meals delivered</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">🇬🇧</div>
+            <div class="stat-label">Delivers UK wide</div>
+          </div>
+        </div>
+      </div>
+
       <!-- What happens next -->
       <div class="info-card reveal">
         <div class="info-card-label">What happens next</div>
@@ -837,30 +859,6 @@
           </li>
         </ul>
       </div>
-
-      <!-- Stats -->
-      <div class="stat-card reveal">
-        <div class="stat-card-label">The Numbers</div>
-        <div class="stat-grid">
-          <div class="stat-item">
-            <div class="stat-num">10k+</div>
-            <div class="stat-label">Happy customers</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">10</div>
-            <div class="stat-label">Meals in your sample box</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">1M+</div>
-            <div class="stat-label">Meals delivered</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">🇬🇧</div>
-            <div class="stat-label">Delivers UK wide</div>
-          </div>
-        </div>
-      </div>
-
 
     </aside>
   </div>
