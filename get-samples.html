@@ -156,8 +156,11 @@
       display: flex;
       justify-content: center;
       gap: 12px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       animation: fadeUp 0.6s 0.3s ease both;
+    }
+    @media (max-width: 600px) {
+      .hero-awards { flex-wrap: wrap; }
     }
     .hero-award {
       display: flex;
@@ -616,8 +619,8 @@
       <h1>Try Calo for Teams,<br/><em>on us.</em></h1>
       <p>See what your team actually thinks — with no commitment. Get your free 10 meal samples delivered straight to your office.</p>
       <div class="hero-awards">
-        <div class="hero-award"><span class="star">★</span> <a href="https://www.goodhousekeeping.com/uk/food/g32474872/food-delivery-boxes/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Voted best Healthy Meal Prep Service 2026</a></div>
-        <div class="hero-award"><span class="star">★</span> <a href="https://mensfitness.co.uk/review/best-meal-delivery-services/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Voted Best Meal Delivery Service in the UK — Men's Fitness</a></div>
+        <div class="hero-award"><span class="star">★</span> <a href="https://www.goodhousekeeping.com/uk/food/g32474872/food-delivery-boxes/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">#1 Healthy Meal Prep Service — Good Housekeeping</a></div>
+        <div class="hero-award"><span class="star">★</span> <a href="https://mensfitness.co.uk/review/best-meal-delivery-services/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">#1 Meal Delivery Service in the UK — Men's Fitness</a></div>
       </div>
     </div>
   </section>
