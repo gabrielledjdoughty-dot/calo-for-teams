@@ -228,7 +228,8 @@
     }
     @media (max-width: 920px) {
       .main { grid-template-columns: 1fr; }
-      .sidebar { order: 1; }
+      .sidebar { order: 1; display: flex; flex-direction: column; }
+      .stat-card { order: -1; }
     }
 
     /* ── FORM CARD ── */
@@ -604,6 +605,7 @@
       <div class="logo-divider"></div>
       <span class="logo-sub">for teams</span>
     </a>
+    <div class="header-award">🎁 FREE SAMPLE BOX — 10 MEALS</div>
   </div>
 </header>
 
@@ -615,8 +617,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-eyebrow">🎁 Free Sample Box — 10 Meals</div>
-      <h1>Try Calo for Teams,<br/><em>on us.</em></h1>
+      <h1>Try Calo for Teams, <em>on us.</em></h1>
       <p>See what your team actually thinks — with no commitment. Get your free 10 meal samples delivered straight to your office.</p>
       <div class="hero-awards">
         <div class="hero-award"><span class="star">🏆</span> <a href="https://www.goodhousekeeping.com/uk/food/g32474872/food-delivery-boxes/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;display:flex;flex-direction:column;align-items:center;text-align:center;"><span>#1 Healthy Meal Prep Service in the UK</span><span style="font-weight:800;text-decoration:underline;">Good Housekeeping</span></a></div>
