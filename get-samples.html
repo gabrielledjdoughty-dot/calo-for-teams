@@ -370,12 +370,10 @@
     }
     @media (max-width: 600px) {
       .diet-option {
-        grid-template-columns: 18px;
-        grid-template-rows: auto auto;
-        row-gap: 6px;
-        align-items: start;
+        grid-template-columns: 18px 1fr;
+        grid-template-rows: auto;
+        align-items: center;
       }
-      .diet-option span:last-child { grid-column: 1 / -1; }
     }
     .diet-option:hover { border-color: var(--green); background: rgba(56,182,117,0.04); }
     .diet-option input[type="checkbox"],
